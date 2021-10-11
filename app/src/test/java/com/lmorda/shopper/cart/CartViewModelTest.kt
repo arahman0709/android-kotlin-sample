@@ -27,7 +27,7 @@ class CartViewModelTest {
     fun testGetItems() {
         val mockRepository = mockk<CartRepository>()
         viewModel = CartViewModel(mockRepository)
-        coEvery { mockRepository.getItems() } returns
+        coEvery { mockRepository.getCartItems() } returns
                 listOf(FoodItem(0, 10.00, "Food", 0))
         viewModel.getCartItems().observeForever { }
         assertEquals(
