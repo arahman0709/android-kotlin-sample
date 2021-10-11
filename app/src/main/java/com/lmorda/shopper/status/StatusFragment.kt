@@ -1,0 +1,50 @@
+package com.lmorda.shopper.status
+
+import android.graphics.Color
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.lmorda.shopper.databinding.FragmentStatusBinding
+import com.lmorda.shopper.utils.getViewModelFactory
+import nl.dionsegijn.konfetti.KonfettiView
+import nl.dionsegijn.konfetti.models.Shape
+import nl.dionsegijn.konfetti.models.Size
+
+class StatusFragment : Fragment() {
+
+    private val viewModel by viewModels<StatusViewModel> { getViewModelFactory() }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val binding = FragmentStatusBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        viewModel.getOrderStatus().observe(viewLifecycleOwner, {
+            binding.orderStatus.text = it
+            if (it == "Order complete!") confetti(binding.viewKonfetti)
+        })
+
+        viewModel.loading.observe(viewLifecycleOwner, {
+            binding.pbLoading.isVisible = it
+        })
+
+        return view
+    }
+
+    fun confetti(viewKonfetti: KonfettiView) {
+        viewKonfetti.build()
+            .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+            .setDirection(0.0, 359.0)
+            .setSpeed(1f, 5f)
+            .setFadeOutEnabled(true)
+            .setTimeToLive(2000L)
+            .addShapes(Shape.Square, Shape.Circle)
+            .addSizes(Size(12))
+            .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
+            .streamFor(300, 5000L)
+    }
+}

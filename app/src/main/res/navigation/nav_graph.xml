@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/storeFragment">
+
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="com.lmorda.shopper.store.StoreFragment"
+        android:label="StoreFragment"
+        tools:layout="@layout/fragment_cart" >
+
+        <action
+            android:id="@+id/action_storeFragment_to_cartFragment"
+            app:destination="@+id/cartFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.lmorda.shopper.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart" >
+
+        <action
+            android:id="@+id/action_cartFragment_to_statusFragment"
+            app:destination="@+id/statusFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/statusFragment"
+        android:name="com.lmorda.shopper.status.StatusFragment"
+        android:label="StatusFragment"
+        tools:layout="@layout/fragment_status">
+
+    </fragment>
+
+
+</navigation>

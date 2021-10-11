@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Shopper</string>
+    <string name="shopping_cart">Shopping Cart</string>
+    <string name="supermarket_name">Jons</string>
+    <string name="checkout">Checkout</string>
+    <string name="place_order">Place order</string>
+    <string name="content_description_store_logo">Store logo</string>
+    <string name="content_description_item_image">Item image</string>
+    <string name="order_total">Your order total is $%.2f%n</string>
+</resources>
