@@ -1,14 +1,9 @@
 # android-kotlin-samples-v2
 
-Sample Android project inspired by Google's architecture blueprints, using a mock shopping cart API service as my remote data source
+Sample Android project inspired by Google's architecture blueprints, using a mock shopping cart API service as my "remote data source".  This app, lazily called "Shopper", is an Instacart-like app that gives the user the ability to add grocery items to a cart and checkout.  The main purpose of this app is to demonstrate profiency Android development with Kotlin and Jetpack Components and not to be taken too seriously, haha.
 
 ## Getting Started
 
- * Clone this repository
+ * Clone this repository `https://github.com/lmorda/android-kotlin-sample-v2`
  * Open the Project with Android Studio
  * Run the app
-
-## Branches
- 
- * **main** - a simple MVVM architecture using coroutines
- * **paging3** - added a paging3 sample
