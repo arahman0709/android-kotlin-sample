@@ -1,6 +1,6 @@
-# android-kotlin-samples-v2
+# android-kotlin-sample-v2
 
-Sample Android project inspired by Google's architecture blueprints, using a mock shopping cart API service as my "remote data source".  This app, lazily called "Shopper", is an Instacart-like app that gives the user the ability to add grocery items to a cart and checkout.  The main purpose of this app is to demonstrate profiency Android development with Kotlin and Jetpack Components and not to be taken too seriously, haha.
+Sample Android project inspired by Google's architecture blueprints, using a mock shopping cart API service as my "remote data source".  This app, lazily called "Shopper", is an Instacart-like app that gives the user the ability to add grocery items to a cart and checkout.  The main purpose of this app is to demonstrate profiency Android development with Kotlin and Jetpack Components and not to be taken too seriously, haha.  The major difference in this sample project is the use of Flow and Paging3
 
 ## Getting Started
 
