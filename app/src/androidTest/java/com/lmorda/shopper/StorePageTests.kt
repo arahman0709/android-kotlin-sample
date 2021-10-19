@@ -1,13 +1,14 @@
 package com.lmorda.shopper
 
 import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import org.junit.Rule
+import org.hamcrest.Matchers.allOf
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -20,5 +21,51 @@ class StorePageTests {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
         activityScenario.close()
+    }
+
+    @Test
+    fun testPillLaunchesCart() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+
+        // No items in cart, does not go to cart
+        onView(withId(R.id.cart_pill)).perform(click())
+        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+
+        // Add item to cart, then go to cart
+        onView(allOf(withId(R.id.cbItem), hasSibling(withText("Wurth Ketchup"))))
+            .perform(click())
+        onView(withId(R.id.cart_pill)).perform(click())
+        onView(withId(R.id.cartHeader)).check(matches(withText("Shopping Cart")))
+
+        // Go back to store page
+        Espresso.pressBack()
+        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+        activityScenario.close()
+
+    }
+
+    @Test
+    fun testCheckedItemsStateSaved() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+
+        // No items in cart, does not go to cart
+        onView(withId(R.id.cart_pill)).perform(click())
+        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+
+        // Add item to cart, then go to cart
+        onView(allOf(withId(R.id.cbItem), hasSibling(withText("Wurth Ketchup"))))
+            .perform(click())
+        onView(withId(R.id.cart_pill)).perform(click())
+        onView(withId(R.id.cartHeader)).check(matches(withText("Shopping Cart")))
+
+        // Go back to store page
+        Espresso.pressBack()
+        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+        onView(allOf(withId(R.id.cbItem), hasSibling(withText("Wurth Ketchup"))))
+            .check(matches(isChecked()))
+        activityScenario.close()
+
     }
 }

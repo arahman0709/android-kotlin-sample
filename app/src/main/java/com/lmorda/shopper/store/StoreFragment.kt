@@ -1,6 +1,7 @@
 package com.lmorda.shopper.store
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class StoreFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
+        Log.d("louie", "Store fragment created")
         val binding = FragmentStoreBinding.inflate(inflater, container, false)
         val view = binding.root
         var creatingOrder = false
@@ -50,6 +52,11 @@ class StoreFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("louie", "Store fragment destroyed")
     }
 
 }
