@@ -34,7 +34,7 @@ class StoreFragment : Fragment() {
             }
         }
 
-        binding.btnCheckout.setOnClickListener {
+        binding.pill.setOnClickListener {
             if (creatingOrder || adapter.checkedItems.isEmpty()) return@setOnClickListener
             creatingOrder = true
             viewModel.createOrder(adapter.checkedItems).observe(viewLifecycleOwner, Observer {

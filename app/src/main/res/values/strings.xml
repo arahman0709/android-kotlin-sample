@@ -2,6 +2,7 @@
     <string name="app_name">Shopper</string>
     <string name="shopping_cart">Shopping Cart</string>
     <string name="supermarket_name">Jons</string>
+    <string name="supermarket_subtitle">Fresh organic food</string>
     <string name="checkout">Checkout</string>
     <string name="place_order">Place order</string>
     <string name="content_description_store_logo">Store logo</string>

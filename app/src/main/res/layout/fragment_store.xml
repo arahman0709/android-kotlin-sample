@@ -1,110 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <View
-        android:id="@+id/headerSeparator"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/light_grey"
-        android:layout_marginTop="8dp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/header"/>
-
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        android:textSize="22sp"
-        android:textColor="@color/black"
-        android:text="@string/shopping_cart"/>
-
-    <View
-        android:id="@+id/headerSeparatorLine1"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/grey"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/headerSeparator"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mockStoreLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/itemsList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerSeparatorLine1">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/mockStoreLogo"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/store"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="@string/content_description_store_logo" />
+        <!-- Cart Pill -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/pill"
+            android:layout_width="48dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/cart_pill"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/cart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="0"
+                tools:text="12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Header -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/mockStoreLogo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:textSize="22sp"
+            android:layout_marginTop="8dp"
+            android:text="@string/supermarket_name"
             android:textColor="@color/black"
-            android:layout_marginStart="16dp"
-            android:text="@string/supermarket_name"/>
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/storeSubtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/storeSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/supermarket_subtitle"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/mockStoreLogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/storeSubtitle" />
+
+        <!-- Banner -->
+        <ImageView
+            android:id="@+id/mockStoreLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:contentDescription="@string/content_description_store_logo"
+            android:src="@drawable/banner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/storeSubtitle" />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:elevation="2dp"
+            android:src="@drawable/store"
+            app:layout_constraintBottom_toBottomOf="@id/mockStoreLogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mockStoreLogo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:id="@+id/headerSeparatorLine2"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/grey"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@id/mockStoreLayout"/>
-
+    <!-- Items -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemsList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/btnCheckout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerSeparatorLine2"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="@id/mockStoreLayout"
         tools:context=".MainActivity"
         tools:listitem="@layout/store_item" />
-
-    <TextView
-        android:id="@+id/btnCheckout"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/green"
-        android:textColor="@color/white"
-        android:text="@string/checkout"
-        android:gravity="center"
-        android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/itemsList"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
