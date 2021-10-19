@@ -4,6 +4,6 @@ Sample Android project inspired by Google's architecture blueprints, using a moc
 
 ## Getting Started
 
- * Clone this repository `https://github.com/lmorda/android-kotlin-sample-v2`
+ * Clone this repository `https://github.com/lmorda/android-kotlin-sample`
  * Open the Project with Android Studio
  * Run the app
