@@ -23,8 +23,6 @@ class StoreFragment : Fragment() {
     private val viewModel by viewModels<StoreViewModel> { getViewModelFactory() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-
-        Log.d("louie", "Store fragment created")
         val binding = FragmentStoreBinding.inflate(inflater, container, false)
         val view = binding.root
         var creatingOrder = false
@@ -42,6 +40,11 @@ class StoreFragment : Fragment() {
             }
         }
 
+        viewModel.getCartItems().observe(viewLifecycleOwner, {
+            numItems = it
+            binding.numItems.text = it.toString()
+        })
+
         binding.cartPill.setOnClickListener {
             if (creatingOrder || adapter.checkedItems.isEmpty()) return@setOnClickListener
             creatingOrder = true
@@ -52,11 +55,6 @@ class StoreFragment : Fragment() {
         }
 
         return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("louie", "Store fragment destroyed")
     }
 
 }

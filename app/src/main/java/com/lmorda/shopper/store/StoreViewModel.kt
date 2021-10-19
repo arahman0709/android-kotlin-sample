@@ -9,6 +9,10 @@ class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel()
 
     val storeItems = storeRepository.storeItems
 
+    fun getCartItems() = liveData {
+        emit(storeRepository.getCartNum())
+    }
+
     fun createOrder(items: List<FoodItem>?) =  liveData {
         items?.let {
             emit(storeRepository.createOrder(items))

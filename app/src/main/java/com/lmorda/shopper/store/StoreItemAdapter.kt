@@ -47,6 +47,7 @@ class StoreItemAdapter(val checkListener: (Int) -> Unit) : PagingDataAdapter<Foo
             with(binding) {
                 itemName.text = foodItem.name
                 itemImage.setImageDrawable(itemView.resources.getDrawable(foodItem.imageRes, null))
+                cbItem.isChecked = foodItem.inCart
                 cbItem.setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
                         checkedItems.put(foodItem.id, foodItem)

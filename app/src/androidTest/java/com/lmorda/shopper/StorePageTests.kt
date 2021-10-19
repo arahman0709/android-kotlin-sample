@@ -60,11 +60,17 @@ class StorePageTests {
         onView(withId(R.id.cart_pill)).perform(click())
         onView(withId(R.id.cartHeader)).check(matches(withText("Shopping Cart")))
 
-        // Go back to store page
+        // Go back to store page, verify item still in cart
         Espresso.pressBack()
         onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
         onView(allOf(withId(R.id.cbItem), hasSibling(withText("Wurth Ketchup"))))
             .check(matches(isChecked()))
+        onView(withId(R.id.numItems)).check(matches(withText("1")))
+
+        // Remove item from cart, verify number is correct
+        onView(allOf(withId(R.id.cbItem), hasSibling(withText("Wurth Ketchup"))))
+            .perform(click())
+        onView(withId(R.id.numItems)).check(matches(withText("0")))
         activityScenario.close()
 
     }

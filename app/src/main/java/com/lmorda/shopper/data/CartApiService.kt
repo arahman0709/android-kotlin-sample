@@ -72,6 +72,7 @@ class CartApiService {
         delay(MOCK_API_DELAY)
         MOCK_CART.clear()
         MOCK_CART.addAll(items)
+        items.filter { items.contains(it) }.forEach { it.inCart = true }
         return true
     }
 

@@ -35,7 +35,10 @@
         android:label="StatusFragment"
         tools:layout="@layout/fragment_status">
 
-    </fragment>
+        <action
+            android:id="@+id/action_statusFragment_to_storeFragment"
+            app:popUpTo="@id/storeFragment" />
 
+    </fragment>
 
 </navigation>
