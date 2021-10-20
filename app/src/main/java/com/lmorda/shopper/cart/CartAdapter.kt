@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lmorda.shopper.R
 import com.lmorda.shopper.data.FoodItem
 import com.lmorda.shopper.databinding.CartItemBinding
+import java.math.RoundingMode
 
 class CartAdapter :
     ListAdapter<FoodItem, CartAdapter.CartItemViewHolder>(DIFF_CALLBACK) {
@@ -45,13 +46,23 @@ class CartAdapter :
             val binding = CartItemBinding.bind(itemView)
             with(binding) {
                 itemName.text = cartItem.name
-                val needsZero = cartItem.price.times(10).rem(1) == 0.0
-                var price = "$" + cartItem.price
-                if (needsZero) price += "0"
-                itemPrice.text = price
+                itemPrice.text = cartItem.price.getPriceText()
                 itemImage.setImageDrawable(itemView.resources.getDrawable(cartItem.imageRes, null))
             }
         }
 
     }
 }
+
+fun Double.getPriceText() =
+    when {
+        this < 0 -> "$0.00" // server bug
+        this > MAX_PRICE -> "$0.00" // server bug
+        else -> "$" + this.twoDecimalsMax().let {
+            if (it.needsZero()) it.toString() + "0"
+            else it.toString()
+        }
+    }
+const val MAX_PRICE = 100000.00
+fun Double.twoDecimalsMax() = this.toBigDecimal().setScale(2, RoundingMode.FLOOR).toDouble()
+fun Double.needsZero() = this.times(10).rem(1) == 0.0
