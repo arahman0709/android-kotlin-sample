@@ -1,5 +1,6 @@
 package com.lmorda.shopper.data
 
+import android.util.Log
 import com.lmorda.shopper.R
 import kotlinx.coroutines.delay
 
@@ -64,34 +65,51 @@ class CartApiService {
     val MOCK_API_DELAY = 0L
 
     suspend fun getStoreItems(pageNum: Int): StoreItems {
+        Log.d("shopper", "GET /v1/store/items")
         delay(MOCK_API_DELAY)
+        Log.d("shopper", "SUCCESS /v1/store/items ")
         return MOCK_STORE_ITEMS[pageNum - 1]
     }
 
+    suspend fun getFoodItemDetails(foodItemId: Int?): FoodItem? {
+        Log.d("shopper", "GET /v1/store/items/" + foodItemId)
+        delay(MOCK_API_DELAY)
+        Log.d("shopper", "SUCCESS /v1/store/items/" + foodItemId)
+        return MOCK_STORE_ITEMS.flatMap { it.items }.find { it.id == foodItemId }
+    }
+
     suspend fun createOrder(items: List<FoodItem>): Boolean {
+        Log.d("shopper", "POST /v1/order")
         delay(MOCK_API_DELAY)
         MOCK_CART.clear()
         MOCK_CART.addAll(items)
         items.filter { items.contains(it) }.forEach { it.inCart = true }
+        Log.d("shopper", "SUCCESS /v1/order")
         return true
     }
 
     suspend fun getCartItems(): List<FoodItem> {
+        Log.d("shopper", "GET /v1/cart/items")
         delay(MOCK_API_DELAY)
+        Log.d("shopper", "SUCCESS /v1/cart/items")
         return MOCK_CART
     }
 
     suspend fun getOrderTotal(): Double {
+        Log.d("shopper", "GET /v1/order/total")
         delay(MOCK_API_DELAY)
+        Log.d("shopper", "SUCCESS /v1/order/total")
         return MOCK_CART.sumOf { it.price }
     }
 
     suspend fun getOrderStatus(): String {
+        Log.d("shopper", "GET /v1/order/status")
         delay(MOCK_API_DELAY)
         val status = MOCK_STATUSES[MOCK_ORDER_STATUS_STEP]
         MOCK_ORDER_STATUS_STEP++
         if (MOCK_ORDER_STATUS_STEP == MOCK_STATUSES.size)
             MOCK_ORDER_STATUS_STEP = 0
+        Log.d("shopper", "SUCCESS /v1/order/status")
         return status
     }
 

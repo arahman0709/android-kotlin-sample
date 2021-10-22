@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.lmorda.shopper.FOOD_ITEM_ID_ARG
 import com.lmorda.shopper.R
 import com.lmorda.shopper.data.FoodItem
 import com.lmorda.shopper.databinding.FragmentStoreBinding
@@ -28,10 +30,15 @@ class StoreFragment : Fragment() {
         var creatingOrder = false
         var numItems = 0
 
-        val adapter = StoreItemAdapter({
-            numItems += it
-            binding.numItems.text = numItems.toString()
-        })
+        val adapter = StoreItemAdapter(
+            itemClickListener = {
+                val bundle = bundleOf(FOOD_ITEM_ID_ARG to it)
+                findNavController().navigate(R.id.action_storeFragment_to_detailsFragment, bundle)
+            },
+            checkListener = {
+                numItems += it
+                binding.numItems.text = numItems.toString()
+            })
         binding.itemsList.adapter = adapter
 
         lifecycleScope.launch {
@@ -39,7 +46,6 @@ class StoreFragment : Fragment() {
                 adapter.submitData(pagingData)
             }
         }
-
         viewModel.getCartItems().observe(viewLifecycleOwner, {
             numItems = it
             binding.numItems.text = it.toString()

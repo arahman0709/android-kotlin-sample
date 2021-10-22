@@ -9,6 +9,7 @@ import com.lmorda.shopper.cart.CartViewModel
 import com.lmorda.shopper.data.CartRepository
 import com.lmorda.shopper.data.StatusRepository
 import com.lmorda.shopper.data.StoreRepository
+import com.lmorda.shopper.details.DetailsViewModel
 import com.lmorda.shopper.status.StatusViewModel
 import com.lmorda.shopper.store.StoreViewModel
 
@@ -28,6 +29,7 @@ class ViewModelFactory constructor(
     ) = with(modelClass) {
         when {
             isAssignableFrom(CartViewModel::class.java) -> CartViewModel(cartRepository)
+            isAssignableFrom(DetailsViewModel::class.java) -> DetailsViewModel(storeRepository)
             isAssignableFrom(StatusViewModel::class.java) -> StatusViewModel(statusRepository)
             isAssignableFrom(StoreViewModel::class.java) -> StoreViewModel(storeRepository)
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

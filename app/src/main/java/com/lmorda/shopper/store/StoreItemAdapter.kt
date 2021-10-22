@@ -10,7 +10,9 @@ import com.lmorda.shopper.R
 import com.lmorda.shopper.data.FoodItem
 import com.lmorda.shopper.databinding.StoreItemBinding
 
-class StoreItemAdapter(val checkListener: (Int) -> Unit) : PagingDataAdapter<FoodItem, StoreItemAdapter.StoreItemViewHolder>(DIFF_CALLBACK) {
+class StoreItemAdapter(val itemClickListener: (Int) -> Unit,
+                       val checkListener: (Int) -> Unit)
+    : PagingDataAdapter<FoodItem, StoreItemAdapter.StoreItemViewHolder>(DIFF_CALLBACK) {
 
     val checkedItems = mutableMapOf<Int, FoodItem>()
 
@@ -44,6 +46,7 @@ class StoreItemAdapter(val checkListener: (Int) -> Unit) : PagingDataAdapter<Foo
         fun bind(foodItem: FoodItem?) {
             if (foodItem == null) return
             val binding = StoreItemBinding.bind(itemView)
+            itemView.setOnClickListener { itemClickListener.invoke(foodItem.id) }
             with(binding) {
                 itemName.text = foodItem.name
                 itemImage.setImageDrawable(itemView.resources.getDrawable(foodItem.imageRes, null))

@@ -15,6 +15,23 @@
             android:id="@+id/action_storeFragment_to_cartFragment"
             app:destination="@+id/cartFragment" />
 
+        <action
+            android:id="@+id/action_storeFragment_to_detailsFragment"
+            app:destination="@+id/detailsFragment" />
+
+        <argument
+            android:name="foodItemId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.lmorda.shopper.details.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details">
+
     </fragment>
 
     <fragment
@@ -37,7 +54,9 @@
 
         <action
             android:id="@+id/action_statusFragment_to_storeFragment"
-            app:popUpTo="@id/storeFragment" />
+            app:destination="@id/storeFragment"
+            app:popUpTo="@+id/storeFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
 

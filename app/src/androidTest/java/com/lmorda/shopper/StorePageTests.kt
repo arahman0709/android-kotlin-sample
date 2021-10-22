@@ -74,4 +74,28 @@ class StorePageTests {
         activityScenario.close()
 
     }
+
+    @Test
+    fun testCompletedOrder() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        // Add item to cart, then go to cart
+        onView(allOf(withId(R.id.cbItem), hasSibling(withText("Wurth Ketchup"))))
+            .perform(click())
+        onView(withId(R.id.cart_pill)).perform(click())
+        // Click complete purchase
+        onView(withId(R.id.btnPlaceOrder)).perform(click())
+        // Verify sent back to home page
+        Thread.sleep(10000)
+        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+        activityScenario.close()
+    }
+
+    @Test
+    fun testLaunchDetailsPage() {
+        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+
+        onView(allOf(withId(R.id.itemImage), hasSibling(withText("Wurth Ketchup"))))
+            .perform(click())
+        onView(withId(R.id.storeTitle)).check(matches(withText("Wurth Ketchup")))
+    }
 }

@@ -8,8 +8,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.lmorda.shopper.R
 import com.lmorda.shopper.databinding.FragmentStatusBinding
 import com.lmorda.shopper.utils.getViewModelFactory
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
@@ -25,7 +30,13 @@ class StatusFragment : Fragment() {
 
         viewModel.getOrderStatus().observe(viewLifecycleOwner, {
             binding.orderStatus.text = it
-            if (it == "Order complete!") confetti(binding.viewKonfetti)
+            if (it == "Order complete!") {
+                confetti(binding.viewKonfetti)
+                lifecycleScope.launch {
+                    delay(5000)
+                    findNavController().navigate(R.id.action_statusFragment_to_storeFragment)
+                }
+            }
         })
 
         viewModel.loading.observe(viewLifecycleOwner, {
