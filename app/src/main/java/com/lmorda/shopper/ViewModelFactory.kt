@@ -29,7 +29,7 @@ class ViewModelFactory constructor(
     ) = with(modelClass) {
         when {
             isAssignableFrom(CartViewModel::class.java) -> CartViewModel(cartRepository)
-            isAssignableFrom(DetailsViewModel::class.java) -> DetailsViewModel(storeRepository)
+            isAssignableFrom(DetailsViewModel::class.java) -> DetailsViewModel(storeRepository, handle)
             isAssignableFrom(StatusViewModel::class.java) -> StatusViewModel(statusRepository)
             isAssignableFrom(StoreViewModel::class.java) -> StoreViewModel(storeRepository)
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

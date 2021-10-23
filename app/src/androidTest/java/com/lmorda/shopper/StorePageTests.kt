@@ -41,6 +41,11 @@ class StorePageTests {
         // Go back to store page
         Espresso.pressBack()
         onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+
+        // Clear cart for next test
+        onView(allOf(withId(R.id.cbItem), hasSibling(withText("Wurth Ketchup"))))
+            .perform(click())
+        onView(withId(R.id.numItems)).check(matches(withText("0")))
         activityScenario.close()
 
     }
@@ -96,6 +101,7 @@ class StorePageTests {
 
         onView(allOf(withId(R.id.itemImage), hasSibling(withText("Wurth Ketchup"))))
             .perform(click())
-        onView(withId(R.id.storeTitle)).check(matches(withText("Wurth Ketchup")))
+        onView(withId(R.id.foodName)).check(matches(withText("Wurth Ketchup")))
+        activityScenario.close()
     }
 }

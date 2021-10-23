@@ -16,7 +16,7 @@ import com.lmorda.shopper.utils.getViewModelFactory
 
 class DetailsFragment: Fragment() {
 
-    private val viewModel by viewModels<DetailsViewModel> { getViewModelFactory() }
+    private val viewModel by viewModels<DetailsViewModel> { getViewModelFactory(arguments) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +25,7 @@ class DetailsFragment: Fragment() {
     ): View? {
         val binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-        viewModel.foodItem(arguments?.get(FOOD_ITEM_ID_ARG) as? Int).observe(viewLifecycleOwner, {
+        viewModel.foodItem.observe(viewLifecycleOwner, {
             it?.let { foodItem ->
                 binding.foodName.text = foodItem.name
                 binding.itemImage.setImageDrawable(resources.getDrawable(foodItem.imageRes, null))
