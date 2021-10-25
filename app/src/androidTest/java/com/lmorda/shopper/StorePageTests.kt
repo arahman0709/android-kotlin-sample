@@ -3,18 +3,32 @@ package com.lmorda.shopper
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import com.lmorda.shopper.utils.EspressoIdlingResource
 import org.hamcrest.Matchers.allOf
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class StorePageTests {
+
+    @Before
+    fun registerIdlingResource() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
+    }
+
+    @After
+    fun unregisterIdlingResource() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
+    }
 
     @Test
     fun testStorePageLaunchesAfterSplash() {
@@ -90,7 +104,6 @@ class StorePageTests {
         // Click complete purchase
         onView(withId(R.id.btnPlaceOrder)).perform(click())
         // Verify sent back to home page
-        Thread.sleep(10000)
         onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
         activityScenario.close()
     }
