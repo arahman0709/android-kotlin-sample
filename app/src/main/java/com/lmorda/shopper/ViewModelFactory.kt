@@ -6,7 +6,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.lmorda.shopper.cart.CartViewModel
-import com.lmorda.shopper.data.CartRepository
 import com.lmorda.shopper.data.StatusRepository
 import com.lmorda.shopper.data.StoreRepository
 import com.lmorda.shopper.details.DetailsViewModel

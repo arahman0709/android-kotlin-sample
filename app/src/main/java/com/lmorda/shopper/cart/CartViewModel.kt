@@ -2,7 +2,6 @@ package com.lmorda.shopper.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.lmorda.shopper.data.CartRepository
 import com.lmorda.shopper.data.StoreRepository
 
 class CartViewModel(private val storeRepository: StoreRepository) : ViewModel() {

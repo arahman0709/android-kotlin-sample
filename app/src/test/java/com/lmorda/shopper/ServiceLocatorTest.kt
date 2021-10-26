@@ -1,6 +1,5 @@
 package com.lmorda.shopper
 
-import com.lmorda.shopper.data.CartRepository
 import com.lmorda.shopper.data.StatusRepository
 import com.lmorda.shopper.data.StoreRepository
 import io.mockk.every
