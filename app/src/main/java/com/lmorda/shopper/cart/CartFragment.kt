@@ -1,7 +1,6 @@
 package com.lmorda.shopper.cart
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,11 @@ class CartFragment : Fragment() {
 
     private val viewModel by viewModels<CartViewModel> { getViewModelFactory() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         val binding = FragmentCartBinding.inflate(inflater, container, false)
         val view = binding.root

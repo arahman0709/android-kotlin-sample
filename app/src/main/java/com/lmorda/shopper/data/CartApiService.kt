@@ -1,9 +1,7 @@
 package com.lmorda.shopper.data
 
-import android.util.Log
 import com.lmorda.shopper.R
 import com.lmorda.shopper.utils.Loug
-import com.lmorda.shopper.utils.Loug.d
 import kotlinx.coroutines.delay
 
 class CartApiService() {
@@ -76,7 +74,10 @@ class CartApiService() {
     suspend fun getFoodItemDetails(foodItemId: Int?): FoodItem? {
         Loug.d("shopper", "GET /v1/store/items/" + foodItemId)
         delay(MOCK_API_DELAY)
-        Loug.d("shopper", "SUCCESS /v1/store/items/\n" + foodItemId + " " + MOCK_STORE_ITEMS.flatMap { it.items }.find { it.id == foodItemId })
+        Loug.d(
+            "shopper",
+            "SUCCESS /v1/store/items/\n" + foodItemId + " " + MOCK_STORE_ITEMS.flatMap { it.items }
+                .find { it.id == foodItemId })
         return MOCK_STORE_ITEMS.flatMap { it.items }.find { it.id == foodItemId }
     }
 

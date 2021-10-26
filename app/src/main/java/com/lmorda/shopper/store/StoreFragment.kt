@@ -21,7 +21,11 @@ class StoreFragment : Fragment() {
 
     private val viewModel by viewModels<StoreViewModel> { getViewModelFactory() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding = FragmentStoreBinding.inflate(inflater, container, false)
         val view = binding.root
         var creatingOrder = false

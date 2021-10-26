@@ -63,6 +63,7 @@ fun Double.getPriceText() =
             else it.toString()
         }
     }
+
 const val MAX_PRICE = 100000.00
 fun Double.twoDecimalsMax() = this.toBigDecimal().setScale(2, RoundingMode.FLOOR).toDouble()
 fun Double.needsZero() = this.times(10).rem(1) == 0.0

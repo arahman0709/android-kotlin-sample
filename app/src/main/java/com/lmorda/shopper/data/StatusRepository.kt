@@ -1,7 +1,6 @@
 package com.lmorda.shopper.data
 
 import com.lmorda.shopper.utils.EspressoIdlingResource
-import com.lmorda.shopper.utils.wrapEspressoIdlingResource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

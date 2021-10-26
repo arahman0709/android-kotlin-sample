@@ -10,9 +10,10 @@ import com.lmorda.shopper.R
 import com.lmorda.shopper.data.FoodItem
 import com.lmorda.shopper.databinding.StoreItemBinding
 
-class StoreItemAdapter(val itemClickListener: (Int) -> Unit,
-                       val checkListener: (Pair<FoodItem, Boolean>) -> Unit)
-    : PagingDataAdapter<FoodItem, StoreItemAdapter.StoreItemViewHolder>(DIFF_CALLBACK) {
+class StoreItemAdapter(
+    val itemClickListener: (Int) -> Unit,
+    val checkListener: (Pair<FoodItem, Boolean>) -> Unit
+) : PagingDataAdapter<FoodItem, StoreItemAdapter.StoreItemViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FoodItem>() {

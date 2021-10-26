@@ -23,7 +23,11 @@ class StatusFragment : Fragment() {
 
     private val viewModel by viewModels<StatusViewModel> { getViewModelFactory() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         val binding = FragmentStatusBinding.inflate(inflater, container, false)
         val view = binding.root
