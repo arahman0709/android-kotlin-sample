@@ -15,7 +15,6 @@ import com.lmorda.shopper.store.StoreViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
-    private val cartRepository: CartRepository,
     private val statusRepository: StatusRepository,
     private val storeRepository: StoreRepository,
     owner: SavedStateRegistryOwner,
@@ -28,7 +27,7 @@ class ViewModelFactory constructor(
         handle: SavedStateHandle
     ) = with(modelClass) {
         when {
-            isAssignableFrom(CartViewModel::class.java) -> CartViewModel(cartRepository)
+            isAssignableFrom(CartViewModel::class.java) -> CartViewModel(storeRepository)
             isAssignableFrom(DetailsViewModel::class.java) -> DetailsViewModel(storeRepository, handle)
             isAssignableFrom(StatusViewModel::class.java) -> StatusViewModel(statusRepository)
             isAssignableFrom(StoreViewModel::class.java) -> StoreViewModel(storeRepository)

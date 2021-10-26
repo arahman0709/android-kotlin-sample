@@ -8,9 +8,6 @@ import com.lmorda.shopper.data.StoreRepository
 object ServiceLocator {
 
     @Volatile
-    var cartRepository: CartRepository? = null
-
-    @Volatile
     var statusRepository: StatusRepository? = null
 
     @Volatile
@@ -18,13 +15,6 @@ object ServiceLocator {
 
     @Volatile
     var cartApiService: CartApiService? = null
-
-
-    fun provideCartRepository(): CartRepository {
-        synchronized(this) {
-            return cartRepository ?: createCartRepository()
-        }
-    }
 
     fun provideStatusRepository(): StatusRepository {
         synchronized(this) {
@@ -42,12 +32,6 @@ object ServiceLocator {
         synchronized(this) {
             return cartApiService ?: createMockApiService()
         }
-    }
-
-    private fun createCartRepository(): CartRepository {
-        val cartRepository = CartRepository(provideCartApiService())
-        this.cartRepository = cartRepository
-        return cartRepository
     }
 
     private fun createStatusRepository(): StatusRepository {

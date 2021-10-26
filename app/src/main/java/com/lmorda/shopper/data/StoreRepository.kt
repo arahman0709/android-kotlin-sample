@@ -19,8 +19,16 @@ class StoreRepository(private val apiService: CartApiService) {
         return true
     }
 
+    suspend fun getCartItems(): List<FoodItem> {
+        return apiService.getCartItems()
+    }
+
     suspend fun getCartNum(): Int {
         return apiService.getCartItems().size
+    }
+
+    suspend fun getOrderTotal(): Double {
+        return apiService.getOrderTotal()
     }
 
     suspend fun createOrder() = apiService.createOrder()

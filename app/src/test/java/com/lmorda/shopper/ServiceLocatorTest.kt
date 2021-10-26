@@ -12,14 +12,6 @@ import org.junit.Test
 class ServiceLocatorTest {
 
     @Test
-    fun testProvideCartRepository() {
-        mockkObject(ServiceLocator)
-        val repository = mockk<CartRepository>()
-        every { ServiceLocator.provideCartRepository() } returns repository
-        assertEquals(ServiceLocator.provideCartRepository(), repository)
-    }
-
-    @Test
     fun testProvideStatusRepository() {
         mockkObject(ServiceLocator)
         val repository = mockk<StatusRepository>()
