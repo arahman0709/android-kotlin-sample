@@ -58,12 +58,9 @@ fun Double.getPriceText() =
     when {
         this < 0 -> "$0.00" // server bug
         this > MAX_PRICE -> "$0.00" // server bug
-        else -> "$" + this.twoDecimalsMax().let {
-            if (it.needsZero()) it.toString() + "0"
-            else it.toString()
-        }
+        else -> "$" + this.twoDecimalsFloor()
     }
 
 const val MAX_PRICE = 100000.00
-fun Double.twoDecimalsMax() = this.toBigDecimal().setScale(2, RoundingMode.FLOOR).toDouble()
-fun Double.needsZero() = this.times(10).rem(1) == 0.0
+fun Double.twoDecimalsFloor(): String =
+    this.toBigDecimal().setScale(2, RoundingMode.FLOOR).toString()

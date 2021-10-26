@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.lmorda.shopper.ORDER_COMPLETE
 import com.lmorda.shopper.R
 import com.lmorda.shopper.databinding.FragmentStatusBinding
 import com.lmorda.shopper.utils.getViewModelFactory
@@ -23,6 +24,8 @@ class StatusFragment : Fragment() {
 
     private val viewModel by viewModels<StatusViewModel> { getViewModelFactory() }
 
+    private val CONFETTI_TIME = 5000L
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,10 +37,10 @@ class StatusFragment : Fragment() {
 
         viewModel.getOrderStatus().observe(viewLifecycleOwner, {
             binding.orderStatus.text = it
-            if (it == "Order complete!") {
-                confetti(binding.viewKonfetti)
+            if (it == ORDER_COMPLETE) {
+                showConfetti(binding.viewKonfetti)
                 lifecycleScope.launch {
-                    delay(5000)
+                    delay(CONFETTI_TIME)
                     findNavController().navigate(R.id.action_statusFragment_to_storeFragment)
                 }
             }
@@ -50,7 +53,7 @@ class StatusFragment : Fragment() {
         return view
     }
 
-    fun confetti(viewKonfetti: KonfettiView) {
+    private fun showConfetti(viewKonfetti: KonfettiView) {
         viewKonfetti.build()
             .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
             .setDirection(0.0, 359.0)
@@ -60,6 +63,6 @@ class StatusFragment : Fragment() {
             .addShapes(Shape.Square, Shape.Circle)
             .addSizes(Size(12))
             .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
-            .streamFor(300, 5000L)
+            .streamFor(300, CONFETTI_TIME)
     }
 }

@@ -1,5 +1,6 @@
 package com.lmorda.shopper.data
 
+import com.lmorda.shopper.ORDER_COMPLETE
 import com.lmorda.shopper.R
 import com.lmorda.shopper.utils.Loug
 import kotlinx.coroutines.delay
@@ -9,7 +10,7 @@ class CartApiService() {
         val MOCK_STATUSES = listOf(
             "Verifying payment card",
             "Processing order",
-            "Order complete!"
+            ORDER_COMPLETE
         )
     }
 

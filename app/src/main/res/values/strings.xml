@@ -7,5 +7,6 @@
     <string name="place_order">Place order</string>
     <string name="content_description_store_logo">Store logo</string>
     <string name="content_description_item_image">Item image</string>
-    <string name="order_total">Your order total is $%.2f%n</string>
+    <string name="order_total">Your order total is %s</string>
+    <string name="create_order_error">"Could not create order"</string>
 </resources>

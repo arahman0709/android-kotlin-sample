@@ -1,7 +1,6 @@
 package com.lmorda.shopper.cart
 
-import org.junit.Assert.*
-
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class CartAdapterKtTest {
@@ -20,5 +19,13 @@ class CartAdapterKtTest {
         // Anything more than this must be a bug
         price = MAX_PRICE + 1
         assertEquals(price.getPriceText(), "$0.00")
+    }
+
+    @Test
+    fun getTwoDecimals() {
+        var number = 10.999
+        assertEquals(number.twoDecimalsFloor(), "10.99")
+        number = 10.9
+        assertEquals(number.twoDecimalsFloor(), "10.90")
     }
 }

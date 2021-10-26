@@ -33,7 +33,7 @@ class CartFragment : Fragment() {
         })
 
         viewModel.getOrderTotal().observe(viewLifecycleOwner, {
-            binding.orderTotal.text = getString(R.string.order_total, it)
+            binding.orderTotal.text = getString(R.string.order_total, it.getPriceText())
         })
 
         binding.btnPlaceOrder.setOnClickListener {

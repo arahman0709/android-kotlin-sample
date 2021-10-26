@@ -7,12 +7,15 @@ import kotlinx.coroutines.flow.flow
 
 class StatusRepository(private val apiService: CartApiService) {
 
+    // Wait 1 second and fetch again
+    private val POLLING_DELAY = 1000L
+
     // Polling
     val processOrder: Flow<String> =
         flow {
             EspressoIdlingResource.increment()
             while (true) {
-                delay(1000) // Wait 1 second and fetch again
+                delay(POLLING_DELAY)
                 val latestStatus = apiService.getOrderStatus()
                 emit(latestStatus)
                 if (latestStatus == CartApiService.MOCK_STATUSES.last()) break

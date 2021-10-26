@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast.LENGTH_SHORT
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.lmorda.shopper.FOOD_ITEM_ID_ARG
 import com.lmorda.shopper.R
 import com.lmorda.shopper.databinding.FragmentStoreBinding
@@ -60,8 +62,14 @@ class StoreFragment : Fragment() {
             if (creatingOrder || numItems == 0) return@setOnClickListener
             creatingOrder = true
             viewModel.createOrder().observe(viewLifecycleOwner, Observer {
-                if (it == true) findNavController().navigate(R.id.action_storeFragment_to_cartFragment)
-                else creatingOrder = false //TODO: Show error
+                if (it == true) {
+                    creatingOrder = false
+                    findNavController().navigate(R.id.action_storeFragment_to_cartFragment)
+                }
+                else {
+                    creatingOrder = false
+                    Snackbar.make(view, resources.getString(R.string.create_order_error), LENGTH_SHORT).show()
+                }
             })
         }
 
