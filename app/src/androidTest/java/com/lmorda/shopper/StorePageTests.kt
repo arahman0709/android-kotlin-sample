@@ -103,6 +103,8 @@ class StorePageTests {
         onView(withId(R.id.cart_pill)).perform(click())
         // Click complete purchase
         onView(withId(R.id.btnPlaceOrder)).perform(click())
+        // Click Order details close button
+        onView(withId(R.id.closeOrderBtn)).perform(click())
         // Verify sent back to home page
         onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
         activityScenario.close()

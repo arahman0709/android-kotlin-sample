@@ -41,7 +41,7 @@ class StatusFragment : Fragment() {
                 showConfetti(binding.viewKonfetti)
                 lifecycleScope.launch {
                     delay(CONFETTI_TIME)
-                    findNavController().navigate(R.id.action_statusFragment_to_storeFragment)
+                    findNavController().navigate(R.id.action_statusFragment_to_orderFragment)
                 }
             }
         })
