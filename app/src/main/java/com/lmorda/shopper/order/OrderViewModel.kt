@@ -13,8 +13,6 @@ class OrderViewModel(val storeRepository: StoreRepository, val state: SavedState
         if (orderId == -1) orderId = state.get<Int>(ORDER_ID_ARG)
     }
 
-    fun getOrder() = liveData {
-        emit(storeRepository.getOrder(state.get<Int>(ORDER_ID_ARG)))
-    }
+    val orderDetails = storeRepository.getOrderDetails(state.get<Int>(ORDER_ID_ARG) ?: -1)
 
 }

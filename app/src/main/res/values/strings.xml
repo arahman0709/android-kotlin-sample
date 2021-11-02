@@ -9,4 +9,5 @@
     <string name="content_description_item_image">Item image</string>
     <string name="order_total">Your order total is %s</string>
     <string name="create_order_error">"Could not create order"</string>
+    <string name="enter_message">Enter message</string>
 </resources>

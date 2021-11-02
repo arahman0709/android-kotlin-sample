@@ -103,6 +103,8 @@ class StorePageTests {
         onView(withId(R.id.cart_pill)).perform(click())
         // Click complete purchase
         onView(withId(R.id.btnPlaceOrder)).perform(click())
+        // Verify confirming order has begun
+        onView(withId(R.id.orderStatus)).check(matches(withText("Confirming your order")))
         // Click Order details close button
         onView(withId(R.id.closeOrderBtn)).perform(click())
         // Verify sent back to home page

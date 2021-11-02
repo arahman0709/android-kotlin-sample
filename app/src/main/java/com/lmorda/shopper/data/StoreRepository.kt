@@ -33,6 +33,6 @@ class StoreRepository(private val apiService: CartApiService) {
 
     suspend fun createOrder() = apiService.createOrder()
 
-    suspend fun getOrder(orderId: Int?) = Order("Order Name")
+    fun getOrderDetails(orderNum: Int) = apiService.getOrderDetails(orderNum)
 
 }

@@ -4,6 +4,7 @@ import com.lmorda.shopper.ORDER_COMPLETE
 import com.lmorda.shopper.R
 import com.lmorda.shopper.utils.Loug
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 
 class CartApiService() {
     companion object {
@@ -63,7 +64,30 @@ class CartApiService() {
         )
 
     var MOCK_ORDER_STATUS_STEP = 0
+
     val MOCK_API_DELAY = 0L
+    val MOCK_ORDER_UPDATE_DELAY = 10000L
+
+    val MOCK_ORDER_NUM = 0
+
+    val MOCK_ORDER_DETAILS = listOf(
+        Order(
+            orderNum = MOCK_ORDER_NUM,
+            status = "Confirming your order",
+            arrivalFirst = "2021-11-02'T'09:13:00'Z'",
+            arrivalSecond = "2021-11-02'T'09:23:00'Z'",
+            statusDetails = "We sent your order to Jons for final confirmation.",
+            storeName = "Jons"
+        ),
+        Order(
+            orderNum = MOCK_ORDER_NUM,
+            status = "Confirming your order",
+            arrivalFirst = "2021-11-02'T'09:13:00'Z'",
+            arrivalSecond = "2021-11-02'T'09:23:00'Z'",
+            statusDetails = "We sent your order to Jons for final confirmation.",
+            storeName = "Jons"
+        )
+    )
 
     suspend fun getStoreItems(pageNum: Int): StoreItems {
         Loug.d("shopper", "GET /v1/store/items")
@@ -128,6 +152,16 @@ class CartApiService() {
         }
         Loug.d("shopper", "SUCCESS /v1/order/status " + status)
         return status
+    }
+
+    fun getOrderDetails(orderNum: Int) = flow {
+        if (orderNum != MOCK_ORDER_NUM) emit(null)
+        var updateNum = 0
+        while (updateNum < MOCK_ORDER_DETAILS.size) {
+            emit(MOCK_ORDER_DETAILS[updateNum])
+            updateNum++
+            delay(MOCK_ORDER_UPDATE_DELAY)
+        }
     }
 
 }
