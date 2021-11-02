@@ -74,17 +74,17 @@ class CartApiService() {
         Order(
             orderNum = MOCK_ORDER_NUM,
             status = "Confirming your order",
-            arrivalFirst = "2021-11-02'T'09:13:00'Z'",
-            arrivalSecond = "2021-11-02'T'09:23:00'Z'",
+            arrivalFirst = "2021-11-01T14:47:00Z",
+            arrivalSecond = "2021-11-01T14:57:00Z",
             statusDetails = "We sent your order to Jons for final confirmation.",
             storeName = "Jons"
         ),
         Order(
             orderNum = MOCK_ORDER_NUM,
-            status = "Confirming your order",
-            arrivalFirst = "2021-11-02'T'09:13:00'Z'",
-            arrivalSecond = "2021-11-02'T'09:23:00'Z'",
-            statusDetails = "We sent your order to Jons for final confirmation.",
+            status = "Order confirmed",
+            arrivalFirst = "2021-11-01T14:49:00Z",
+            arrivalSecond = "2021-11-01T14:54:00Z",
+            statusDetails = "Order confirmed. Driver is waiting for your order.",
             storeName = "Jons"
         )
     )

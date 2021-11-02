@@ -13,9 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.lmorda.shopper.R
-import com.lmorda.shopper.ViewModelFactory
 import com.lmorda.shopper.databinding.FragmentOrderBinding
 import com.lmorda.shopper.utils.getViewModelFactory
+import com.lmorda.shopper.utils.parseISO8601
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -33,15 +33,16 @@ class OrderFragment: Fragment() {
         lifecycleScope.launch {
             viewModel.orderDetails.collectLatest {
                 binding.orderStatus.text = it?.status
-                binding.arrivalTime.text = it?.arrivalFirst + " " + it?.arrivalSecond
+                binding.arrivalTime.text = getString(R.string.arrives_between) +
+                    " " + it?.arrivalFirst?.parseISO8601()+
+                            "-" + it?.arrivalSecond?.parseISO8601()
                 binding.statusDetails.text = it?.statusDetails
             }
         }
 
-        binding.chatEditText.setOnEditorActionListener { view, actionId, event ->
+        binding.chatEditText.setOnEditorActionListener { view, actionId, _ ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEND -> {
-                    //sendMessage()
                     view.text = ""
                     showMessageSent()
                     true
