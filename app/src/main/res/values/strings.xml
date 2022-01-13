@@ -11,4 +11,7 @@
     <string name="create_order_error">"Could not create order"</string>
     <string name="enter_message">Enter message</string>
     <string name="arrives_between">Arrives between</string>
+    <string name="title_store">Shop</string>
+    <string name="title_buy_again">Buy It Again</string>
+    <string name="title_chat">Chat</string>
 </resources>

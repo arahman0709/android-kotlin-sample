@@ -27,6 +27,22 @@
     </fragment>
 
     <fragment
+        android:id="@+id/buyAgainFragment"
+        android:name="com.lmorda.shopper.buyagain.BuyAgainFragment"
+        android:label="BuyAgainFragment"
+        tools:layout="@layout/fragment_buy_again">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.lmorda.shopper.chat.ChatFragment"
+        android:label="ChatFragment"
+        tools:layout="@layout/fragment_chat">
+
+    </fragment>
+
+    <fragment
         android:id="@+id/detailsFragment"
         android:name="com.lmorda.shopper.details.DetailsFragment"
         android:label="DetailsFragment"
