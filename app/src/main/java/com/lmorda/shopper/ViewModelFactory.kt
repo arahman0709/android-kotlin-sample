@@ -5,6 +5,7 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
+import com.lmorda.shopper.buyagain.BuyAgainViewModel
 import com.lmorda.shopper.cart.CartViewModel
 import com.lmorda.shopper.data.StatusRepository
 import com.lmorda.shopper.data.StoreRepository
@@ -31,6 +32,7 @@ class ViewModelFactory constructor(
             isAssignableFrom(DetailsViewModel::class.java) -> DetailsViewModel(storeRepository, handle)
             isAssignableFrom(StatusViewModel::class.java) -> StatusViewModel(statusRepository)
             isAssignableFrom(StoreViewModel::class.java) -> StoreViewModel(storeRepository)
+            isAssignableFrom(BuyAgainViewModel::class.java) -> BuyAgainViewModel(storeRepository)
             isAssignableFrom(OrderDetailsViewModel::class.java) -> OrderDetailsViewModel(storeRepository, handle)
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
