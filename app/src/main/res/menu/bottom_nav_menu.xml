@@ -7,13 +7,13 @@
         android:title="@string/title_store" />
 
     <item
-        android:id="@+id/chatFragment"
-        android:icon="@drawable/ic_baseline_chat_24"
-        android:title="@string/title_chat" />
-
-    <item
         android:id="@+id/buyAgainFragment"
         android:icon="@drawable/ic_baseline_fastfood_24"
         android:title="@string/title_buy_again" />
+
+    <item
+        android:id="@+id/chatFragment"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="@string/title_chat" />
 
 </menu>

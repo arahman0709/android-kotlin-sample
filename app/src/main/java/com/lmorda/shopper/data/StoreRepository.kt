@@ -6,7 +6,11 @@ import androidx.paging.PagingConfig
 class StoreRepository(private val apiService: CartApiService) {
 
     val storeItems = Pager(PagingConfig(pageSize = 10)) {
-        StorePagingSource(apiService)
+        StoreItemsPagingSource(apiService)
+    }.flow
+
+    val previousItems = Pager(PagingConfig(pageSize = 10)) {
+        PreviousItemsPagingSource(apiService)
     }.flow
 
     suspend fun getFoodDetails(foodItemId: Int?): FoodItem? {
@@ -19,20 +23,10 @@ class StoreRepository(private val apiService: CartApiService) {
         return true
     }
 
-    suspend fun getCartItems(): List<FoodItem> {
-        return apiService.getCartItems()
-    }
-
-    suspend fun getCartNum(): Int {
-        return apiService.getCartItems().size
-    }
-
-    suspend fun getOrderTotal(): Double {
-        return apiService.getOrderTotal()
-    }
-
+    suspend fun getCartItems() = apiService.getCartItems()
+    suspend fun getCartNum() = apiService.getCartItems().size
+    suspend fun getOrderTotal() = apiService.getOrderTotal()
     suspend fun createOrder() = apiService.createOrder()
-
     fun getOrderDetails(orderNum: Int) = apiService.getOrderDetails(orderNum)
 
 }

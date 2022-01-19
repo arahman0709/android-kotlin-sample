@@ -5,7 +5,7 @@ import com.lmorda.shopper.ORDER_ID_ARG
 import com.lmorda.shopper.data.Order
 import com.lmorda.shopper.data.StoreRepository
 
-class OrderViewModel(val storeRepository: StoreRepository, val state: SavedStateHandle): ViewModel() {
+class OrderDetailsViewModel(val storeRepository: StoreRepository, val state: SavedStateHandle): ViewModel() {
 
     var orderId: Int? = -1
 

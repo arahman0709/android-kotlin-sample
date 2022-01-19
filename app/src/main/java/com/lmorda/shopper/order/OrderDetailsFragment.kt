@@ -19,9 +19,9 @@ import com.lmorda.shopper.utils.parseISO8601
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class OrderFragment: Fragment() {
+class OrderDetailsFragment: Fragment() {
 
-    private val viewModel by viewModels<OrderViewModel> { getViewModelFactory() }
+    private val viewModel by viewModels<OrderDetailsViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,

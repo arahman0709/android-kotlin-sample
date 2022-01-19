@@ -89,11 +89,20 @@ class CartApiService() {
         )
     )
 
+    val MOCK_PREVIOUSLY_BOUGHT = listOf(MOCK_STORE_ITEMS[0], MOCK_STORE_ITEMS[1])
+
     suspend fun getStoreItems(pageNum: Int): StoreItems {
         Loug.d("shopper", "GET /v1/store/items")
         delay(MOCK_API_DELAY)
         Loug.d("shopper", "SUCCESS /v1/store/items\n" + MOCK_STORE_ITEMS[pageNum - 1])
         return MOCK_STORE_ITEMS[pageNum - 1]
+    }
+
+    suspend fun getPreviousItems(pageNum: Int): StoreItems {
+        Loug.d("shopper", "GET /v1/store/items/previous")
+        delay(MOCK_API_DELAY)
+        Loug.d("shopper", "SUCCESS /v1/store/previous\n" + MOCK_PREVIOUSLY_BOUGHT[pageNum - 1])
+        return MOCK_PREVIOUSLY_BOUGHT[pageNum - 1]
     }
 
     suspend fun getFoodItemDetails(foodItemId: Int?): FoodItem? {
@@ -154,6 +163,7 @@ class CartApiService() {
         return status
     }
 
+    // Mocking some type of real-time communication here
     fun getOrderDetails(orderNum: Int) = flow {
         if (orderNum != MOCK_ORDER_NUM) emit(null)
         var updateNum = 0
