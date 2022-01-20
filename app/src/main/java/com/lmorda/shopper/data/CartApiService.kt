@@ -90,6 +90,9 @@ class CartApiService() {
 
     val MOCK_PREVIOUSLY_BOUGHT = listOf(MOCK_STORE_ITEMS[0], MOCK_STORE_ITEMS[1])
 
+    /**
+     * Get a list of food items at a store (only one store right now!)
+     */
     suspend fun getStoreItems(pageNum: Int): StoreItems {
         Loug.d("shopper", "GET /v1/store/items")
         delay(MOCK_API_DELAY)
@@ -97,6 +100,9 @@ class CartApiService() {
         return MOCK_STORE_ITEMS[pageNum - 1]
     }
 
+    /**
+     * Get a list of food items a user can buy again
+     */
     suspend fun getPreviousItems(pageNum: Int): StoreItems {
         Loug.d("shopper", "GET /v1/store/items/previous")
         delay(MOCK_API_DELAY)
@@ -104,6 +110,9 @@ class CartApiService() {
         return MOCK_PREVIOUSLY_BOUGHT[pageNum - 1]
     }
 
+    /**
+     * Get the details about a food item
+     */
     suspend fun getFoodItemDetails(foodItemId: Int?): FoodItem? {
         Loug.d("shopper", "GET /v1/store/items/" + foodItemId)
         delay(MOCK_API_DELAY)
@@ -114,6 +123,9 @@ class CartApiService() {
         return MOCK_STORE_ITEMS.flatMap { it.items }.find { it.id == foodItemId }
     }
 
+    /**
+     * Create a new order
+     */
     suspend fun createOrder(): Boolean {
         Loug.d("shopper", "POST /v1/order")
         delay(MOCK_API_DELAY)
@@ -121,6 +133,9 @@ class CartApiService() {
         return true
     }
 
+    /**
+     * Add ad item to the cart
+     */
     suspend fun addItemToCart(foodItem: FoodItem): Boolean {
         foodItem.inCart = true
         MOCK_CART.add(foodItem)
@@ -128,12 +143,18 @@ class CartApiService() {
         return true
     }
 
+    /**
+     * Remove an item that was added to the cart
+     */
     suspend fun removeItemFromCart(foodItem: FoodItem): Boolean {
         MOCK_CART.remove(foodItem)
         MOCK_STORE_ITEMS.flatMap { it.items }.find { it.id == foodItem.id }?.inCart = false
         return true
     }
 
+    /**
+     * Get the list of items currently in the cart
+     */
     suspend fun getCartItems(): List<FoodItem> {
         Loug.d("shopper", "GET /v1/cart/items")
         delay(MOCK_API_DELAY)
@@ -141,6 +162,9 @@ class CartApiService() {
         return MOCK_CART
     }
 
+    /**
+     * Get the order total by summing all of the items in the cart
+     */
     suspend fun getOrderTotal(): Double {
         Loug.d("shopper", "GET /v1/order/total")
         delay(MOCK_API_DELAY)
@@ -149,7 +173,8 @@ class CartApiService() {
     }
 
     /**
-     *
+     * Get the status of the checkout process, includes verifying payment method,
+     * processing order, and checkout complete statuses
      */
     suspend fun getCheckoutStatus(): String {
         Loug.d("shopper", "GET /v1/order/status")
@@ -166,7 +191,8 @@ class CartApiService() {
     }
 
     /**
-     * Get order details for
+     * Get arrival details for the order including driver status and arrival time.  Simulates
+     * some type of real-time server connection using a flow
      */
     fun getArrivalDetails(orderNum: Int) = flow {
         if (orderNum != MOCK_ORDER_NUM) emit(null)

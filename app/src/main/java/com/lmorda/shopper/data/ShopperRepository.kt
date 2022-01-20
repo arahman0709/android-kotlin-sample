@@ -12,33 +12,56 @@ import kotlinx.coroutines.flow.flow
 
 class ShopperRepository(private val apiService: CartApiService) {
 
+    /**
+     * Get the food items at a store using paging
+     */
     val storeItems = Pager(PagingConfig(pageSize = 10)) {
         StoreItemsPagingSource(apiService)
     }.flow
 
+    /**
+     * Get the buy again food items at a store using paging
+     */
     val previousItems = Pager(PagingConfig(pageSize = 10)) {
         PreviousItemsPagingSource(apiService)
     }.flow
 
+    /**
+     * Get the details for a food item
+     */
     suspend fun getFoodDetails(foodItemId: Int?): FoodItem? {
         return apiService.getFoodItemDetails(foodItemId)
     }
 
+    /**
+     * Create a new order at a store (only one store right now!)
+     */
+    suspend fun createOrder() = apiService.createOrder()
+
+    /**
+     * Shopping cart information including cart items, number of items, and amount total
+     */
+    suspend fun getCartItems() = apiService.getCartItems()
+    suspend fun getCartNum() = apiService.getCartItems().size
+    suspend fun getOrderTotal() = apiService.getOrderTotal()
+
+    /**
+     * Update the cart by either adding or removing an item
+     */
     suspend fun updateCart(foodItem: FoodItem, isAdd: Boolean): Boolean {
         if (isAdd) apiService.addItemToCart(foodItem)
         else apiService.removeItemFromCart(foodItem)
         return true
     }
 
-    suspend fun getCartItems() = apiService.getCartItems()
-    suspend fun getCartNum() = apiService.getCartItems().size
-    suspend fun getOrderTotal() = apiService.getOrderTotal()
-    suspend fun createOrder() = apiService.createOrder()
-
-    // Order details, simulating the map updating, driver status, etc
+    /**
+     * Order details, simulating the map updating, driver status, etc.
+     */
     fun getOrderDetails(orderNum: Int) = apiService.getArrivalDetails(orderNum)
 
-    // Polling order status after checkout
+    /**
+     * Poll the order status after the user has initiated checkout
+     */
     private val POLLING_DELAY = 1000L
     val processOrder: Flow<String> =
         flow {
