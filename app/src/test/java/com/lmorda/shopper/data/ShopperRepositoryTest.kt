@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
 
-class StatusRepositoryTest {
+class ShopperRepositoryTest {
 
     @Test
     fun testOrderStatusFlow(): Unit = runBlocking {

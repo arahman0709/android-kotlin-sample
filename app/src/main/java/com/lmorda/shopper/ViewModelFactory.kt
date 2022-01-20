@@ -9,7 +9,7 @@ import com.lmorda.shopper.buyagain.BuyAgainViewModel
 import com.lmorda.shopper.cart.CartViewModel
 import com.lmorda.shopper.data.ShopperRepository
 import com.lmorda.shopper.details.DetailsViewModel
-import com.lmorda.shopper.order.OrderDetailsViewModel
+import com.lmorda.shopper.arrival.ArrivalViewModel
 import com.lmorda.shopper.status.StatusViewModel
 import com.lmorda.shopper.store.StoreViewModel
 
@@ -31,7 +31,7 @@ class ViewModelFactory constructor(
             isAssignableFrom(StatusViewModel::class.java) -> StatusViewModel(shopperRepository)
             isAssignableFrom(StoreViewModel::class.java) -> StoreViewModel(shopperRepository)
             isAssignableFrom(BuyAgainViewModel::class.java) -> BuyAgainViewModel(shopperRepository)
-            isAssignableFrom(OrderDetailsViewModel::class.java) -> OrderDetailsViewModel(shopperRepository, handle)
+            isAssignableFrom(ArrivalViewModel::class.java) -> ArrivalViewModel(shopperRepository, handle)
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     } as T

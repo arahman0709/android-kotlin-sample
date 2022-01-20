@@ -65,15 +65,11 @@ class CartApiService() {
                 ), null
             ),
         )
-
     var MOCK_ORDER_STATUS_STEP = 0
-
     val MOCK_API_DELAY = 0L
-    val MOCK_ORDER_UPDATE_DELAY = 10000L
-
+    val MOCK_ARRIVAL_UPDATE_DELAY = 10000L
     val MOCK_ORDER_NUM = 0
-
-    val MOCK_ORDER_DETAILS = listOf(
+    val MOCK_ARRIVALS = listOf(
         Order(
             orderNum = MOCK_ORDER_NUM,
             status = "Confirming your order",
@@ -152,7 +148,10 @@ class CartApiService() {
         return MOCK_CART.sumOf { it.price }
     }
 
-    suspend fun getOrderStatus(): String {
+    /**
+     *
+     */
+    suspend fun getCheckoutStatus(): String {
         Loug.d("shopper", "GET /v1/order/status")
         delay(MOCK_API_DELAY)
         val status = MOCK_STATUSES[MOCK_ORDER_STATUS_STEP]
@@ -166,14 +165,16 @@ class CartApiService() {
         return status
     }
 
-    // Mocking some type of real-time communication here
-    fun getOrderDetails(orderNum: Int) = flow {
+    /**
+     * Get order details for
+     */
+    fun getArrivalDetails(orderNum: Int) = flow {
         if (orderNum != MOCK_ORDER_NUM) emit(null)
         var updateNum = 0
-        while (updateNum < MOCK_ORDER_DETAILS.size) {
-            emit(MOCK_ORDER_DETAILS[updateNum])
+        while (updateNum < MOCK_ARRIVALS.size) {
+            emit(MOCK_ARRIVALS[updateNum])
             updateNum++
-            delay(MOCK_ORDER_UPDATE_DELAY)
+            delay(MOCK_ARRIVAL_UPDATE_DELAY)
         }
     }
 

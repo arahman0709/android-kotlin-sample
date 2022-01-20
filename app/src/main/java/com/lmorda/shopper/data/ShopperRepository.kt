@@ -36,7 +36,7 @@ class ShopperRepository(private val apiService: CartApiService) {
     suspend fun createOrder() = apiService.createOrder()
 
     // Order details, simulating the map updating, driver status, etc
-    fun getOrderDetails(orderNum: Int) = apiService.getOrderDetails(orderNum)
+    fun getOrderDetails(orderNum: Int) = apiService.getArrivalDetails(orderNum)
 
     // Polling order status after checkout
     private val POLLING_DELAY = 1000L
@@ -45,7 +45,7 @@ class ShopperRepository(private val apiService: CartApiService) {
             EspressoIdlingResource.increment()
             while (true) {
                 delay(POLLING_DELAY)
-                val latestStatus = apiService.getOrderStatus()
+                val latestStatus = apiService.getCheckoutStatus()
                 emit(latestStatus)
                 if (latestStatus == CartApiService.MOCK_STATUSES.last()) break
             }

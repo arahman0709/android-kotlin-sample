@@ -1,4 +1,4 @@
-package com.lmorda.shopper.order
+package com.lmorda.shopper.arrival
 
 import android.content.Context
 import android.os.Bundle
@@ -19,9 +19,9 @@ import com.lmorda.shopper.utils.parseISO8601
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class OrderDetailsFragment: Fragment() {
+class ArrivalFragment: Fragment() {
 
-    private val viewModel by viewModels<OrderDetailsViewModel> { getViewModelFactory() }
+    private val viewModel by viewModels<ArrivalViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
