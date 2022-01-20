@@ -2,10 +2,10 @@ package com.lmorda.shopper.order
 
 import androidx.lifecycle.*
 import com.lmorda.shopper.ORDER_ID_ARG
-import com.lmorda.shopper.data.Order
-import com.lmorda.shopper.data.StoreRepository
+import com.lmorda.shopper.data.ShopperRepository
 
-class OrderDetailsViewModel(val storeRepository: StoreRepository, val state: SavedStateHandle): ViewModel() {
+class OrderDetailsViewModel(val shopperRepository: ShopperRepository,
+                            val state: SavedStateHandle): ViewModel() {
 
     var orderId: Int? = -1
 
@@ -13,6 +13,6 @@ class OrderDetailsViewModel(val storeRepository: StoreRepository, val state: Sav
         if (orderId == -1) orderId = state.get<Int>(ORDER_ID_ARG)
     }
 
-    val orderDetails = storeRepository.getOrderDetails(state.get<Int>(ORDER_ID_ARG) ?: -1)
+    val orderDetails = shopperRepository.getOrderDetails(state.get<Int>(ORDER_ID_ARG) ?: -1)
 
 }

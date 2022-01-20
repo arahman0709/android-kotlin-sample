@@ -7,7 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.lmorda.shopper.R
-import com.lmorda.shopper.data.FoodItem
+import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.databinding.StoreItemBinding
 
 class StoreItemAdapter(

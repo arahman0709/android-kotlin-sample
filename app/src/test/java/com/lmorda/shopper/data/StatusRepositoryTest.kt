@@ -11,7 +11,7 @@ class StatusRepositoryTest {
 
     @Test
     fun testOrderStatusFlow(): Unit = runBlocking {
-        val repository = StatusRepository(CartApiService())
+        val repository = ShopperRepository(CartApiService())
         val statuses = repository.processOrder.toList()
         assertThat(statuses).isEqualTo(CartApiService.MOCK_STATUSES)
     }

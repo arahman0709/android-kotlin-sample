@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lmorda.shopper.R
-import com.lmorda.shopper.data.FoodItem
+import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.databinding.CartItemBinding
 import java.math.RoundingMode
 

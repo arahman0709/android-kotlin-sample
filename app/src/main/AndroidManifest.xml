@@ -9,7 +9,7 @@
         android:theme="@style/Theme.App.Starting"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-        <activity android:name="com.lmorda.shopper.MainActivity"
+        <activity android:name="com.lmorda.shopper.ShopperActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

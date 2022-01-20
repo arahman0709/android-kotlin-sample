@@ -7,7 +7,6 @@ import com.lmorda.shopper.ServiceLocator
 import com.lmorda.shopper.ViewModelFactory
 
 fun Fragment.getViewModelFactory(arguments: Bundle? = null): AbstractSavedStateViewModelFactory {
-    val statusRepo = ServiceLocator.provideStatusRepository()
-    val storeRepo = ServiceLocator.provideStoreRepository()
-    return ViewModelFactory(statusRepo, storeRepo, this, arguments)
+    val shopperRepository = ServiceLocator.provideShopperRepository()
+    return ViewModelFactory(shopperRepository, this, arguments)
 }

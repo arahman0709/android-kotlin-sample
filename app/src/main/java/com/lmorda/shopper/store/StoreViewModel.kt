@@ -1,13 +1,13 @@
 package com.lmorda.shopper.store
 
 import androidx.lifecycle.*
-import com.lmorda.shopper.data.FoodItem
-import com.lmorda.shopper.data.StoreRepository
+import com.lmorda.shopper.data.models.FoodItem
+import com.lmorda.shopper.data.ShopperRepository
 import kotlinx.coroutines.launch
 
-class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel() {
+class StoreViewModel(private val shopperRepository: ShopperRepository) : ViewModel() {
 
-    val storeItems = storeRepository.storeItems
+    val storeItems = shopperRepository.storeItems
 
     private val _cartUpdated = MutableLiveData<Boolean>()
     val cartUpdated: LiveData<Boolean> = _cartUpdated
@@ -16,16 +16,16 @@ class StoreViewModel(private val storeRepository: StoreRepository) : ViewModel()
     val cartNum: LiveData<Int> = _cartNum
 
     fun getCartNum() = viewModelScope.launch {
-        _cartNum.postValue(storeRepository.getCartNum())
+        _cartNum.postValue(shopperRepository.getCartNum())
     }
 
     fun updateCart(foodItem: FoodItem, isAdd: Boolean) =
         viewModelScope.launch {
-            _cartUpdated.postValue(storeRepository.updateCart(foodItem, isAdd))
+            _cartUpdated.postValue(shopperRepository.updateCart(foodItem, isAdd))
         }
 
 
     fun createOrder() = liveData {
-        emit(storeRepository.createOrder())
+        emit(shopperRepository.createOrder())
     }
 }

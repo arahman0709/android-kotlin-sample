@@ -1,9 +1,11 @@
-package com.lmorda.shopper.data
+package com.lmorda.shopper.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.lmorda.shopper.data.CartApiService
+import com.lmorda.shopper.data.models.FoodItem
 
-class StoreItemsPagingSource(
+class PreviousItemsPagingSource(
     private val apiService: CartApiService
 ) : PagingSource<Int, FoodItem>() {
     override suspend fun load(
@@ -11,7 +13,7 @@ class StoreItemsPagingSource(
     ): LoadResult<Int, FoodItem> {
         try {
             val nextPageNumber = params.key ?: 1
-            val response = apiService.getStoreItems(nextPageNumber)
+            val response = apiService.getPreviousItems(nextPageNumber)
             return LoadResult.Page(
                 data = response.items,
                 prevKey = null,

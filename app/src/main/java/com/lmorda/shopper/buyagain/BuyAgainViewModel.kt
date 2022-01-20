@@ -1,11 +1,10 @@
 package com.lmorda.shopper.buyagain
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import com.lmorda.shopper.data.StoreRepository
+import com.lmorda.shopper.data.ShopperRepository
 
-class BuyAgainViewModel(private val storeRepository: StoreRepository) : ViewModel() {
+class BuyAgainViewModel(private val shopperRepository: ShopperRepository) : ViewModel() {
 
-    val previousItems = storeRepository.storeItems
+    val previousItems = shopperRepository.storeItems
 
 }
