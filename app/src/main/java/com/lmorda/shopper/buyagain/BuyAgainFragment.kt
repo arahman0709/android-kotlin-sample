@@ -4,19 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.lmorda.shopper.FOOD_ITEM_ID_ARG
 import com.lmorda.shopper.R
 import com.lmorda.shopper.databinding.FragmentBuyAgainBinding
+import com.lmorda.shopper.databinding.FragmentStoreBinding
 import com.lmorda.shopper.store.StoreItemAdapter
-import com.lmorda.shopper.store.StoreViewModel
 import com.lmorda.shopper.utils.getViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 class BuyAgainFragment : Fragment() {
 
@@ -26,28 +30,55 @@ class BuyAgainFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        //TOOD: I just realized Buy Again is almost identical to Store!  But without store banner
-
+    ): View {
         val binding = FragmentBuyAgainBinding.inflate(inflater, container, false)
         val view = binding.root
+        var creatingOrder = false
+        var numItems = 0
 
-        val adapter = StoreItemAdapter(
+        val adapter = BuyAgainAdapter(
             itemClickListener = {
                 val bundle = bundleOf(FOOD_ITEM_ID_ARG to it)
                 findNavController().navigate(R.id.action_storeFragment_to_detailsFragment, bundle)
             },
-            checkListener = {}
-        )
-        binding.previousItemsList.adapter = adapter
+            checkListener = {
+                viewModel.updateCart(it.first, it.second)
+            })
+        binding.itemsList.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.previousItems.collectLatest { pagingData ->
+            viewModel.buyAgainItems.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
         }
 
+        viewModel.cartNum.observe(viewLifecycleOwner, {
+            numItems = it
+            binding.numItems.text = it.toString()
+        })
+
+        viewModel.cartUpdated.observe(viewLifecycleOwner, {
+            viewModel.getCartNum()
+        })
+
+        binding.cartPill.setOnClickListener {
+            if (creatingOrder || numItems == 0) return@setOnClickListener
+            creatingOrder = true
+            viewModel.createOrder().observe(viewLifecycleOwner, Observer {
+                if (it == true) {
+                    creatingOrder = false
+                    findNavController().navigate(R.id.action_storeFragment_to_cartFragment)
+                }
+                else {
+                    creatingOrder = false
+                    Snackbar.make(view, resources.getString(R.string.create_order_error),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        }
+
         return view
     }
+
 }

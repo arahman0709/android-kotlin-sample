@@ -2,9 +2,9 @@ package com.lmorda.shopper.data
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import com.lmorda.shopper.data.models.FoodCategory
 import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.data.paging.PreviousItemsPagingSource
-import com.lmorda.shopper.data.paging.StoreItemsPagingSource
 import com.lmorda.shopper.utils.EspressoIdlingResource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -15,9 +15,9 @@ class ShopperRepository(private val apiService: CartApiService) {
     /**
      * Get the food items at a store using paging
      */
-    val storeItems = Pager(PagingConfig(pageSize = 10)) {
-        StoreItemsPagingSource(apiService)
-    }.flow
+    suspend fun getStoreItems(category: FoodCategory): List<FoodItem> {
+        return apiService.getStoreItems(category = category)
+    }
 
     /**
      * Get the buy again food items at a store using paging

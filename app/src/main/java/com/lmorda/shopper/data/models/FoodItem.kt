@@ -4,6 +4,7 @@ data class FoodItem(
     val id: Int,
     val price: Double,
     val name: String,
-    var imageRes: Int,
-    var inCart: Boolean = false
+    val imageRes: Int,
+    val category: FoodCategory,
+    var inCart: Boolean = false,
 )

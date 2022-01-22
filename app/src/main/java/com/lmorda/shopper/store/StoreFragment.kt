@@ -14,9 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.lmorda.shopper.FOOD_ITEM_ID_ARG
 import com.lmorda.shopper.R
+import com.lmorda.shopper.cart.CartAdapter
+import com.lmorda.shopper.data.models.FoodCategory
 import com.lmorda.shopper.databinding.FragmentStoreBinding
 import com.lmorda.shopper.utils.getViewModelFactory
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class StoreFragment : Fragment() {
@@ -33,7 +34,7 @@ class StoreFragment : Fragment() {
         var creatingOrder = false
         var numItems = 0
 
-        val adapter = StoreItemAdapter(
+        binding.itemsList.adapter = StoreItemAdapter(
             itemClickListener = {
                 val bundle = bundleOf(FOOD_ITEM_ID_ARG to it)
                 findNavController().navigate(R.id.action_storeFragment_to_detailsFragment, bundle)
@@ -41,14 +42,12 @@ class StoreFragment : Fragment() {
             checkListener = {
                 viewModel.updateCart(it.first, it.second)
             })
-        binding.itemsList.adapter = adapter
 
-        lifecycleScope.launch {
-            viewModel.storeItems.collectLatest { pagingData ->
-                adapter.submitData(pagingData)
+        viewModel.getStoreItems(FoodCategory.WhatsNew).observe(viewLifecycleOwner, {
+            (binding.itemsList.adapter as StoreItemAdapter).apply {
+                submitList(it)
             }
-        }
-
+        })
         viewModel.cartNum.observe(viewLifecycleOwner, {
             numItems = it
             binding.numItems.text = it.toString()
