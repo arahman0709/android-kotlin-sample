@@ -13,6 +13,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="22sp"
         android:textColor="@color/black"
-        android:text="Chat Goes Here" />
+        android:text="Orders Go Here" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

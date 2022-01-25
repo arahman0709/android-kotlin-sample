@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,7 +28,7 @@ class ShopperActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.storeFragment -> navView.visibility = View.VISIBLE
                 R.id.buyAgainFragment -> navView.visibility = View.VISIBLE
-                R.id.chatFragment -> navView.visibility = View.VISIBLE
+                R.id.ordersFragment -> navView.visibility = View.VISIBLE
                 else -> navView.visibility = View.GONE
             }
         }

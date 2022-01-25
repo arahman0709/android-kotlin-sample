@@ -87,9 +87,9 @@ class CartApiService() {
      * Get a list of food items at a store (only one store right now!)
      */
     suspend fun getStoreItems(category: FoodCategory): List<FoodItem> {
-        Loug.d("shopper", "GET /v1/store/items")
+        Loug.d("shopper", "GET /v1/store/items?category=$category")
         delay(MOCK_API_DELAY)
-        Loug.d("shopper", "SUCCESS /v1/store/items\n" +
+        Loug.d("shopper", "SUCCESS /v1/store/items?category=$category\n" +
                 MOCK_STORE_ITEMS.filter { it.category == category })
         return MOCK_STORE_ITEMS.filter { it.category == category }
     }

@@ -1,13 +1,13 @@
-package com.lmorda.shopper.chat
+package com.lmorda.shopper.orders
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.lmorda.shopper.databinding.FragmentChatBinding
+import com.lmorda.shopper.databinding.FragmentOrdersBinding
 
-class ChatFragment : Fragment() {
+class OrdersFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -15,7 +15,7 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentChatBinding.inflate(inflater, container, false)
+        val binding = FragmentOrdersBinding.inflate(inflater, container, false)
         val view = binding.root
 
         return view
