@@ -55,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buy Again"
+            android:text="@string/title_buy_again"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -73,6 +73,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         android:scrollbars="none"
         app:spanCount="3"

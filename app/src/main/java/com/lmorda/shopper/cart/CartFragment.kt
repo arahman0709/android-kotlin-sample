@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.lmorda.shopper.R
 import com.lmorda.shopper.databinding.FragmentCartBinding
 import com.lmorda.shopper.utils.getViewModelFactory
+import getPriceText
 
 class CartFragment : Fragment() {
 
@@ -24,10 +25,10 @@ class CartFragment : Fragment() {
         val binding = FragmentCartBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.itemsList.adapter = CartAdapter()
+        binding.cartItems.adapter = CartAdapter()
 
         viewModel.getCartItems().observe(viewLifecycleOwner, {
-            (binding.itemsList.adapter as CartAdapter).apply {
+            (binding.cartItems.adapter as CartAdapter).apply {
                 submitList(it)
             }
         })

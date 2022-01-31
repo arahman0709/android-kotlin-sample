@@ -34,7 +34,7 @@ class StoreFragment : Fragment() {
         var creatingOrder = false
         var numItems = 0
 
-        val itemAdapter = StoreItemAdapter(
+        fun getAdapter() = StoreItemAdapter(
             itemClickListener = {
                 val bundle = bundleOf(FOOD_ITEM_ID_ARG to it)
                 findNavController().navigate(R.id.action_storeFragment_to_detailsFragment, bundle)
@@ -43,26 +43,20 @@ class StoreFragment : Fragment() {
                 viewModel.updateCart(it.first, it.second)
             })
 
-        binding.recommendedForYou.adapter = itemAdapter
-        binding.whatsNew.adapter = itemAdapter
-        binding.mostPopular.adapter = itemAdapter
+        binding.recommendedForYou.adapter = getAdapter()
+        binding.whatsNew.adapter = getAdapter()
+        binding.mostPopular.adapter = getAdapter()
 
         viewModel.getStoreItems(FoodCategory.RecommendedForYou).observe(viewLifecycleOwner, {
-            (binding.recommendedForYou.adapter as StoreItemAdapter).apply {
-                submitList(it)
-            }
+            (binding.recommendedForYou.adapter as StoreItemAdapter).apply { submitList(it) }
         })
 
         viewModel.getStoreItems(FoodCategory.WhatsNew).observe(viewLifecycleOwner, {
-            (binding.whatsNew.adapter as StoreItemAdapter).apply {
-                submitList(it)
-            }
+            (binding.whatsNew.adapter as StoreItemAdapter).apply { submitList(it) }
         })
 
         viewModel.getStoreItems(FoodCategory.MostPopular).observe(viewLifecycleOwner, {
-            (binding.mostPopular.adapter as StoreItemAdapter).apply {
-                submitList(it)
-            }
+            (binding.mostPopular.adapter as StoreItemAdapter).apply { submitList(it) }
         })
 
         viewModel.cartNum.observe(viewLifecycleOwner, {

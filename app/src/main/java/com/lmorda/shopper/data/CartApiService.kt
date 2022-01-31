@@ -2,11 +2,8 @@ package com.lmorda.shopper.data
 
 import com.lmorda.shopper.ORDER_COMPLETE
 import com.lmorda.shopper.R
-import com.lmorda.shopper.data.models.FoodCategory
+import com.lmorda.shopper.data.models.*
 import com.lmorda.shopper.data.models.FoodCategory.*
-import com.lmorda.shopper.data.models.FoodItem
-import com.lmorda.shopper.data.models.Order
-import com.lmorda.shopper.data.models.StoreItems
 import com.lmorda.shopper.utils.Loug
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
@@ -56,8 +53,8 @@ class CartApiService() {
                 FoodItem(30, 7.00, "Pepperoni Pizza", R.drawable.pizza, MostPopular),
         )
     val MOCK_PREVIOUSLY_BOUGHT = listOf(
-            StoreItems(items = MOCK_STORE_ITEMS.subList(0, 9), nextPage = 2),
-            StoreItems(items = MOCK_STORE_ITEMS.subList(10, 19), nextPage = null)
+            StoreItems(items = MOCK_STORE_ITEMS.subList(0, 10), nextPage = 2),
+            StoreItems(items = MOCK_STORE_ITEMS.subList(10, 20), nextPage = null)
         )
         
     var MOCK_ORDER_STATUS_STEP = 0
@@ -65,7 +62,7 @@ class CartApiService() {
     val MOCK_ARRIVAL_UPDATE_DELAY = 10000L
     val MOCK_ORDER_NUM = 0
     val MOCK_ARRIVALS = listOf(
-        Order(
+        Arrival(
             orderNum = MOCK_ORDER_NUM,
             status = "Confirming your order",
             arrivalFirst = "2021-11-01T14:47:00Z",
@@ -73,13 +70,30 @@ class CartApiService() {
             statusDetails = "We sent your order to Jons for final confirmation.",
             storeName = "Jons"
         ),
-        Order(
+        Arrival(
             orderNum = MOCK_ORDER_NUM,
             status = "Order confirmed",
             arrivalFirst = "2021-11-01T14:49:00Z",
             arrivalSecond = "2021-11-01T14:54:00Z",
             statusDetails = "Order confirmed. Driver is waiting for your order.",
             storeName = "Jons"
+        )
+    )
+    val MOCK_ORDERS = listOf(
+        Order(
+            orderNum = 0,
+            date = "2021-11-01T14:49:00Z",
+            items = listOf(MOCK_STORE_ITEMS[0], MOCK_STORE_ITEMS[1],
+                MOCK_STORE_ITEMS[2], MOCK_STORE_ITEMS[3], MOCK_STORE_ITEMS[4], MOCK_STORE_ITEMS[5]),
+            total = 123.39
+        ),
+        Order(
+            orderNum = 0,
+            date = "2021-12-01T14:49:00Z",
+            items = listOf(MOCK_STORE_ITEMS[10], MOCK_STORE_ITEMS[11],
+                MOCK_STORE_ITEMS[12], MOCK_STORE_ITEMS[13], MOCK_STORE_ITEMS[14], MOCK_STORE_ITEMS[15]),
+            total = 67.44
+
         )
     )
 
@@ -115,6 +129,17 @@ class CartApiService() {
             "SUCCESS /v1/store/items/\n" + foodItemId + " " +
                     MOCK_STORE_ITEMS.find { it.id == foodItemId })
         return MOCK_STORE_ITEMS.find { it.id == foodItemId }
+    }
+
+    /**
+     * Get summary of all orders
+     */
+    suspend fun getOrders(): List<Order> {
+        Loug.d("shopper", "GET /v1/store/orders")
+        Loug.d("shopper", MOCK_ORDERS.toString())
+        Loug.d("shopper", "SUCCESS /v1/order")
+        delay(MOCK_API_DELAY)
+        return MOCK_ORDERS
     }
 
     /**

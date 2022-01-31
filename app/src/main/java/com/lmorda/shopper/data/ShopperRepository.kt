@@ -74,4 +74,9 @@ class ShopperRepository(private val apiService: CartApiService) {
             }
             EspressoIdlingResource.decrement()
         }
+
+    /**
+     * Previously purchased order list
+     */
+    suspend fun getOrders() = apiService.getOrders()
 }

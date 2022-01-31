@@ -1,10 +1,9 @@
 package com.lmorda.shopper.data.models
 
-data class Order (
+data class Order(
+    val id: String,
     val orderNum: Int,
-    val status: String,
-    val arrivalFirst: String,
-    val arrivalSecond: String,
-    val statusDetails: String,
-    val storeName: String
+    val date: String,
+    val items: List<FoodItem>,
+    val total: Double
 )

@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.lmorda.shopper.MainCoroutineRule
 import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.data.ShopperRepository
+import com.lmorda.shopper.data.models.FoodCategory
 import com.lmorda.shopper.getOrAwaitValue
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -28,11 +29,11 @@ class CartViewModelTest {
         val mockRepository = mockk<ShopperRepository>()
         viewModel = CartViewModel(mockRepository)
         coEvery { mockRepository.getCartItems() } returns
-                listOf(FoodItem(0, 10.00, "Food", 0))
+                listOf(FoodItem(0, 10.00, "Food", 0, FoodCategory.MostPopular))
         viewModel.getCartItems().observeForever { }
         assertEquals(
             viewModel.getCartItems().getOrAwaitValue(),
-            listOf(FoodItem(0, 10.00, "Food", 0))
+            listOf(FoodItem(0, 10.00, "Food", 0, FoodCategory.MostPopular))
         )
     }
 
