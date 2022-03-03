@@ -29,6 +29,7 @@ class ShopperActivity : AppCompatActivity() {
                 R.id.storeFragment -> navView.visibility = View.VISIBLE
                 R.id.buyAgainFragment -> navView.visibility = View.VISIBLE
                 R.id.ordersFragment -> navView.visibility = View.VISIBLE
+                R.id.settingsFragment -> navView.visibility = View.VISIBLE
                 else -> navView.visibility = View.GONE
             }
         }

@@ -5,19 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.lmorda.shopper.databinding.FragmentSettingsBinding
+import androidx.preference.PreferenceFragmentCompat
+import com.lmorda.shopper.R
 
-class SettingsFragment : Fragment() {
-//https://developer.android.com/guide/topics/ui/settings
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        return view
+class SettingsFragment : PreferenceFragmentCompat() {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.preferences, rootKey)
     }
 }
