@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.lmorda.shopper.cart.getPriceText
 import com.lmorda.shopper.databinding.FragmentDetailsBinding
 import com.lmorda.shopper.utils.getViewModelFactory
+import getPriceText
 
 class DetailsFragment : Fragment() {
 

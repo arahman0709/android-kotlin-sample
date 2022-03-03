@@ -1,7 +1,10 @@
 package com.lmorda.shopper.cart
 
+import com.lmorda.shopper.MAX_PRICE
+import getPriceText
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import twoDecimalsFloor
 
 class CartAdapterKtTest {
     @Test

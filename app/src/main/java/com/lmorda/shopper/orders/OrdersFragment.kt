@@ -24,11 +24,9 @@ class OrdersFragment : Fragment() {
         val binding = FragmentOrdersBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.orders.adapter = OrdersAdapter()
-
-        viewModel.getOrders().observe(viewLifecycleOwner, {
-            (binding.orders.adapter as OrdersAdapter).apply {
-                submitList(it)
+        viewModel.getOrders().observe(viewLifecycleOwner, { orders ->
+            binding.orders.setContent {
+                OrderItems(orderItems = orders)
             }
         })
 

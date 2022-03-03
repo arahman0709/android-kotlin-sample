@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lmorda.shopper.R
 import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.databinding.CartItemBinding
-import com.lmorda.shopper.orders.getPriceText
+import getPriceText
 import java.math.RoundingMode
 
 class CartAdapter :

@@ -81,14 +81,14 @@ class CartApiService() {
     )
     val MOCK_ORDERS = listOf(
         Order(
-            orderNum = 0,
+            id = 0,
             date = "2021-11-01T14:49:00Z",
             items = listOf(MOCK_STORE_ITEMS[0], MOCK_STORE_ITEMS[1],
                 MOCK_STORE_ITEMS[2], MOCK_STORE_ITEMS[3], MOCK_STORE_ITEMS[4], MOCK_STORE_ITEMS[5]),
             total = 123.39
         ),
         Order(
-            orderNum = 0,
+            id = 0,
             date = "2021-12-01T14:49:00Z",
             items = listOf(MOCK_STORE_ITEMS[10], MOCK_STORE_ITEMS[11],
                 MOCK_STORE_ITEMS[12], MOCK_STORE_ITEMS[13], MOCK_STORE_ITEMS[14], MOCK_STORE_ITEMS[15]),

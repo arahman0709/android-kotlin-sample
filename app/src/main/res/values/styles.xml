@@ -14,4 +14,10 @@
         <!-- This is used for statusbar content color. If statusbarColor is light, use "true" otherwise use "false"-->
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    <style name="OrderDetailsImage">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_margin">12dp</item>
+        <item name="android:contentDescription">Food image</item>
+    </style>
 </resources>
