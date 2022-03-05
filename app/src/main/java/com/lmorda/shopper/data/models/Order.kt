@@ -4,5 +4,6 @@ data class Order(
     val id: Int,
     val date: String,
     val items: List<FoodItem>,
-    val total: Double
+    val total: Double,
+    val storeName: String
 )

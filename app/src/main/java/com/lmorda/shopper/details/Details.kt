@@ -15,51 +15,65 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lmorda.shopper.R
+import com.lmorda.shopper.data.models.FoodCategory
+import com.lmorda.shopper.data.models.FoodItem
 
 @Preview
 @Composable
-//TODO: What should default values / tools be?
-fun Details(
-    imageResId: Int = R.drawable.ic_baseline_fastfood_24,
-    backBtnListener: () -> Unit = {},
-    foodName: String = "Food Name",
-    price: String = "$9.99"
+fun FoodItemDetails(
+    foodItem: FoodItem,
+    backBtnListener: () -> Unit = {}
 ) {
     Column(
-        Modifier.fillMaxSize().background(Color.White)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
     ) {
         Spacer(Modifier.height(16.dp))
         Image(
-            painterResource(id = R.drawable.ic_baseline_arrow_back_24),
-            "Food name",
-            Modifier
-                .padding(start = 16.dp),
+            painter = painterResource(id = R.drawable.ic_baseline_arrow_back_24),
+            contentDescription = "Food name",
+            modifier = Modifier.padding(start = 16.dp),
         )
         Image(
-            painterResource(id = imageResId),
-            "Food name",
-            Modifier
+            painter = painterResource(id = foodItem.imageRes),
+            contentDescription = "Food name",
+            modifier = Modifier
                 .height(200.dp)
                 .width(200.dp)
                 .align(Alignment.CenterHorizontally)
-                .padding(top=32.dp)
-                .clickable (
+                .padding(top = 32.dp)
+                .clickable(
                     enabled = true,
                     onClick = { backBtnListener() }
                 )
         )
         Text(
-            foodName,
+            text = foodItem.name,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp,
             color = Color.Black,
             modifier = Modifier.padding(start = 16.dp, top = 16.dp)
         )
         Text(
-            price,
+            text = foodItem.price.toString(),
             fontSize = 22.sp,
             color = Color.Black,
             modifier = Modifier.padding(start = 16.dp, top = 16.dp)
         )
     }
+}
+
+@Preview
+@Composable
+fun FoodItemDetailsPreview() {
+    FoodItemDetails(
+        FoodItem(
+            id = 0,
+            category = FoodCategory.MostPopular,
+            name = "Hamburger",
+            price = 5.99,
+            imageRes = R.drawable.ic_baseline_fastfood_24
+        )
+    )
 }
