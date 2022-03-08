@@ -83,6 +83,8 @@ class StoreFragment : Fragment() {
             })
         }
 
+        viewModel.getCartNum()
+
         return view
     }
 

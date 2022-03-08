@@ -67,7 +67,7 @@ class BuyAgainFragment : Fragment() {
             viewModel.createOrder().observe(viewLifecycleOwner, Observer {
                 if (it == true) {
                     creatingOrder = false
-                    findNavController().navigate(R.id.action_storeFragment_to_cartFragment)
+                    findNavController().navigate(R.id.action_buyAgainFragment_to_cartFragment)
                 }
                 else {
                     creatingOrder = false
@@ -77,6 +77,7 @@ class BuyAgainFragment : Fragment() {
                 }
             })
         }
+        viewModel.getCartNum()
 
         return view
     }

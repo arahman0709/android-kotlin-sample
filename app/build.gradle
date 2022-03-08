@@ -30,6 +30,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion "1.0.5"
     }
+    packagingOptions {
+        exclude "META-INF/AL2.0"
+        exclude "META-INF/LGPL2.1"
+    }
 }
 
 dependencies {
