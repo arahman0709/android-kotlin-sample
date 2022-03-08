@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lmorda.shopper.R
-import com.lmorda.shopper.data.FoodItem
+import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.databinding.CartItemBinding
+import getPriceText
 import java.math.RoundingMode
 
 class CartAdapter :
@@ -53,14 +54,3 @@ class CartAdapter :
 
     }
 }
-
-fun Double.getPriceText() =
-    when {
-        this < 0 -> "$0.00" // server bug
-        this > MAX_PRICE -> "$0.00" // server bug
-        else -> "$" + this.twoDecimalsFloor()
-    }
-
-const val MAX_PRICE = 100000.00
-fun Double.twoDecimalsFloor(): String =
-    this.toBigDecimal().setScale(2, RoundingMode.FLOOR).toString()

@@ -1,4 +1,4 @@
-package com.lmorda.shopper.order
+package com.lmorda.shopper.arrival
 
 import android.content.Context
 import android.os.Bundle
@@ -13,22 +13,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.lmorda.shopper.R
-import com.lmorda.shopper.databinding.FragmentOrderBinding
+import com.lmorda.shopper.databinding.FragmentArrivalBinding
 import com.lmorda.shopper.utils.getViewModelFactory
 import com.lmorda.shopper.utils.parseISO8601
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class OrderFragment: Fragment() {
+class ArrivalFragment: Fragment() {
 
-    private val viewModel by viewModels<OrderViewModel> { getViewModelFactory() }
+    private val viewModel by viewModels<ArrivalViewModel> { getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentOrderBinding.inflate(inflater, container, false)
+        val binding = FragmentArrivalBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
             viewModel.orderDetails.collectLatest {

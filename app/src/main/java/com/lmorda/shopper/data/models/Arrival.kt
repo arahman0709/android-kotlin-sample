@@ -1,6 +1,6 @@
-package com.lmorda.shopper.data
+package com.lmorda.shopper.data.models
 
-data class Order (
+data class Arrival (
     val orderNum: Int,
     val status: String,
     val arrivalFirst: String,

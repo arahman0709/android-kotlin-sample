@@ -1,22 +1,19 @@
-package com.lmorda.shopper.store
+package com.lmorda.shopper.buyagain
 
 import androidx.lifecycle.*
-import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.data.ShopperRepository
-import com.lmorda.shopper.data.models.FoodCategory
+import com.lmorda.shopper.data.models.FoodItem
 import kotlinx.coroutines.launch
 
-class StoreViewModel(private val shopperRepository: ShopperRepository) : ViewModel() {
+class BuyAgainViewModel(private val shopperRepository: ShopperRepository) : ViewModel() {
+
+    val buyAgainItems = shopperRepository.previousItems
 
     private val _cartUpdated = MutableLiveData<Boolean>()
     val cartUpdated: LiveData<Boolean> = _cartUpdated
 
     private val _cartNum = MutableLiveData<Int>()
     val cartNum: LiveData<Int> = _cartNum
-
-    fun getStoreItems(category: FoodCategory) = liveData {
-        emit(shopperRepository.getStoreItems(category))
-    }
 
     fun getCartNum() = viewModelScope.launch {
         _cartNum.postValue(shopperRepository.getCartNum())

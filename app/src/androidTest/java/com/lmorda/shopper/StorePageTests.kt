@@ -32,14 +32,14 @@ class StorePageTests {
 
     @Test
     fun testStorePageLaunchesAfterSplash() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(ShopperActivity::class.java)
         onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
         activityScenario.close()
     }
 
     @Test
     fun testPillLaunchesCart() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(ShopperActivity::class.java)
         onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
 
         // No items in cart, does not go to cart
@@ -66,7 +66,7 @@ class StorePageTests {
 
     @Test
     fun testCheckedItemsStateSaved() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(ShopperActivity::class.java)
         onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
 
         // No items in cart, does not go to cart
@@ -96,7 +96,7 @@ class StorePageTests {
 
     @Test
     fun testCompletedOrder() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(ShopperActivity::class.java)
         // Add item to cart, then go to cart
         onView(allOf(withId(R.id.cbItem), hasSibling(withText("Wurth Ketchup"))))
             .perform(click())
@@ -114,7 +114,7 @@ class StorePageTests {
 
     @Test
     fun testLaunchDetailsPage() {
-        val activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        val activityScenario = ActivityScenario.launch(ShopperActivity::class.java)
 
         onView(allOf(withId(R.id.itemImage), hasSibling(withText("Wurth Ketchup"))))
             .perform(click())

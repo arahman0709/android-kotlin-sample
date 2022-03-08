@@ -1,29 +1,19 @@
 package com.lmorda.shopper
 
 import com.lmorda.shopper.data.CartApiService
-import com.lmorda.shopper.data.StatusRepository
-import com.lmorda.shopper.data.StoreRepository
+import com.lmorda.shopper.data.ShopperRepository
 
 object ServiceLocator {
 
     @Volatile
-    var statusRepository: StatusRepository? = null
-
-    @Volatile
-    var storeRepository: StoreRepository? = null
+    var shopperRepository: ShopperRepository? = null
 
     @Volatile
     var cartApiService: CartApiService? = null
 
-    fun provideStatusRepository(): StatusRepository {
+    fun provideShopperRepository(): ShopperRepository {
         synchronized(this) {
-            return statusRepository ?: createStatusRepository()
-        }
-    }
-
-    fun provideStoreRepository(): StoreRepository {
-        synchronized(this) {
-            return storeRepository ?: createStoreRepository()
+            return shopperRepository ?: createShopperRepository()
         }
     }
 
@@ -33,16 +23,10 @@ object ServiceLocator {
         }
     }
 
-    private fun createStatusRepository(): StatusRepository {
-        val statusRepository = StatusRepository(provideCartApiService())
-        this.statusRepository = statusRepository
-        return statusRepository
-    }
-
-    private fun createStoreRepository(): StoreRepository {
-        val storeRepository = StoreRepository(provideCartApiService())
-        this.storeRepository = storeRepository
-        return storeRepository
+    private fun createShopperRepository(): ShopperRepository {
+        val shopperRepository = ShopperRepository(provideCartApiService())
+        this.shopperRepository = shopperRepository
+        return shopperRepository
     }
 
     private fun createMockApiService(): CartApiService {

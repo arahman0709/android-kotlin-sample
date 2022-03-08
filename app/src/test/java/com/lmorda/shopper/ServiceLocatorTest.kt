@@ -1,7 +1,6 @@
 package com.lmorda.shopper
 
-import com.lmorda.shopper.data.StatusRepository
-import com.lmorda.shopper.data.StoreRepository
+import com.lmorda.shopper.data.ShopperRepository
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
@@ -11,19 +10,11 @@ import org.junit.Test
 class ServiceLocatorTest {
 
     @Test
-    fun testProvideStatusRepository() {
+    fun testProvideShopperRepository() {
         mockkObject(ServiceLocator)
-        val repository = mockk<StatusRepository>()
-        every { ServiceLocator.provideStatusRepository() } returns repository
-        assertEquals(ServiceLocator.provideStatusRepository(), repository)
-    }
-
-    @Test
-    fun testProvideStoreRepository() {
-        mockkObject(ServiceLocator)
-        val repository = mockk<StoreRepository>()
-        every { ServiceLocator.provideStoreRepository() } returns repository
-        assertEquals(ServiceLocator.provideStoreRepository(), repository)
+        val repository = mockk<ShopperRepository>()
+        every { ServiceLocator.provideShopperRepository() } returns repository
+        assertEquals(ServiceLocator.provideShopperRepository(), repository)
     }
 
 
