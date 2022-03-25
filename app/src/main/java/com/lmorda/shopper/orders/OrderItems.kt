@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.lmorda.shopper.R
 import com.lmorda.shopper.data.CartApiService
+import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.data.models.Order
 
 @Composable
@@ -37,23 +38,36 @@ fun OrderItems(orderItems: List<Order>) {
             Text(text = description)
 
             // Images of food items ordered
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                items(order.items) { foodItem ->
-                    Image(
-                        painter = painterResource(id = foodItem.imageRes),
-                        contentDescription = stringResource(R.string.order_item_image),
-                        Modifier
-                            .height(48.dp)
-                            .width(48.dp)
-                    )
-                }
-            }
+            OrderImages(order)
 
             // Add space below row if not last order
             if (index > orderItems.size - 1) Spacer(modifier = Modifier.width(16.dp))
         }
     }
 }
+
+@Composable
+private fun OrderImages(order: Order) {
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        items(order.items) { foodItem ->
+            OrderItemImage(foodItem)
+        }
+    }
+}
+
+@Composable
+private fun OrderItemImage(foodItem: FoodItem) {
+    Image(
+        painter = painterResource(id = foodItem.imageRes),
+        contentDescription = stringResource(R.string.order_item_image),
+        modifier = imageModifier()
+    )
+}
+
+@Composable
+private fun imageModifier() = Modifier
+    .height(48.dp)
+    .width(48.dp)
 
 @Preview
 @Composable
