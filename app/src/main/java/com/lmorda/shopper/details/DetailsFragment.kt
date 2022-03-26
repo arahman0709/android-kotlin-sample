@@ -20,6 +20,7 @@ class DetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //TODO: Switch to composable
         val binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
         viewModel.foodItem.observe(viewLifecycleOwner, {

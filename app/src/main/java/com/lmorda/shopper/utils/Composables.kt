@@ -16,6 +16,16 @@ fun clickableSquareImage48dp(clickListener: () -> Unit) = Modifier
 
 
 @Composable
+fun verticalSpace8dp() {
+    Spacer(modifier = Modifier.height(8.dp))
+}
+
+@Composable
 fun verticalSpace16dp() {
-    Spacer(modifier = Modifier.width(16.dp))
+    Spacer(modifier = Modifier.height(16.dp))
+}
+
+@Composable
+fun verticalSpace64dp() {
+    Spacer(modifier = Modifier.height(64.dp))
 }

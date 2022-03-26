@@ -39,7 +39,7 @@ class BuyAgainFragment : Fragment() {
         val adapter = BuyAgainAdapter(
             itemClickListener = {
                 val bundle = bundleOf(FOOD_ITEM_ID_ARG to it)
-                findNavController().navigate(R.id.action_storeFragment_to_detailsFragment, bundle)
+                findNavController().navigate(R.id.action_buyAgainFragment_to_detailsFragment, bundle)
             },
             checkListener = {
                 viewModel.updateCart(it.first, it.second)
