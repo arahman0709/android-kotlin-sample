@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.lmorda.shopper.cart.CartAdapter
 import com.lmorda.shopper.cart.CartViewModel
 import com.lmorda.shopper.databinding.FragmentOrdersBinding
@@ -26,7 +27,7 @@ class OrdersFragment : Fragment() {
 
         viewModel.getOrders().observe(viewLifecycleOwner, { orders ->
             binding.orders.setContent {
-                OrderItems(orderItems = orders)
+                OrderItems(orderItems = orders, navController = findNavController())
             }
         })
 
