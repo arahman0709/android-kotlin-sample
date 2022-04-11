@@ -36,6 +36,10 @@
             android:id="@+id/action_buyAgainFragment_to_cartFragment"
             app:destination="@+id/cartFragment" />
 
+        <action
+            android:id="@+id/action_buyAgainFragment_to_detailsFragment"
+            app:destination="@+id/detailsFragment" />
+
     </fragment>
 
     <fragment
@@ -43,6 +47,10 @@
         android:name="com.lmorda.shopper.orders.OrdersFragment"
         android:label="OrdersFragment"
         tools:layout="@layout/fragment_orders">
+
+        <action
+            android:id="@+id/action_ordersFragment_to_detailsFragment"
+            app:destination="@+id/detailsFragment" />
 
     </fragment>
 

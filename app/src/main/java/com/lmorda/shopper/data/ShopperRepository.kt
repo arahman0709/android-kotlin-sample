@@ -2,6 +2,7 @@ package com.lmorda.shopper.data
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import com.lmorda.shopper.data.MockData.MOCK_STATUSES
 import com.lmorda.shopper.data.models.FoodCategory
 import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.data.paging.PreviousItemsPagingSource
@@ -70,7 +71,7 @@ class ShopperRepository(private val apiService: CartApiService) {
                 delay(POLLING_DELAY)
                 val latestStatus = apiService.getCheckoutStatus()
                 emit(latestStatus)
-                if (latestStatus == CartApiService.MOCK_STATUSES.last()) break
+                if (latestStatus == MOCK_STATUSES.last()) break
             }
             EspressoIdlingResource.decrement()
         }
