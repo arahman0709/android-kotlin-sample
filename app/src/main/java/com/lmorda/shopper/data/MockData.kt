@@ -64,9 +64,9 @@ object MockData {
     )
 
     var MOCK_ORDER_STATUS_STEP = 0
-    val MOCK_API_DELAY = 0L
-    val MOCK_ARRIVAL_UPDATE_DELAY = 10000L
-    val MOCK_ORDER_NUM = 0
+    const val MOCK_API_DELAY = 0L
+    const val MOCK_ARRIVAL_UPDATE_DELAY = 10000L
+    const val MOCK_ORDER_NUM = 0
     val MOCK_ARRIVALS = listOf(
         Arrival(
             orderNum = MOCK_ORDER_NUM,

@@ -27,15 +27,15 @@ class ArrivalFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentArrivalBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
             viewModel.orderDetails.collectLatest {
                 binding.orderStatus.text = it?.status
-                binding.arrivalTime.text = getString(R.string.arrives_between) +
-                    " " + it?.arrivalFirst?.parseISO8601()+
-                            "-" + it?.arrivalSecond?.parseISO8601()
+                binding.arrivalTime.text = getString(R.string.arrival_times,
+                        it?.arrivalFirst?.parseISO8601(),
+                        it?.arrivalSecond?.parseISO8601())
                 binding.statusDetails.text = it?.statusDetails
             }
         }
@@ -58,7 +58,7 @@ class ArrivalFragment: Fragment() {
         return binding.root
     }
 
-    fun showMessageSent() {
+    private fun showMessageSent() {
         view?.let {
             val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(it.windowToken, 0)

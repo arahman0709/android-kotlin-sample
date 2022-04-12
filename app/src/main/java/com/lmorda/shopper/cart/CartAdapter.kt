@@ -3,6 +3,7 @@ package com.lmorda.shopper.cart
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,6 @@ import com.lmorda.shopper.R
 import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.databinding.CartItemBinding
 import getPriceText
-import java.math.RoundingMode
 
 class CartAdapter :
     ListAdapter<FoodItem, CartAdapter.CartItemViewHolder>(DIFF_CALLBACK) {
@@ -48,7 +48,8 @@ class CartAdapter :
             with(binding) {
                 itemName.text = cartItem.name
                 itemPrice.text = cartItem.price.getPriceText()
-                itemImage.setImageDrawable(itemView.resources.getDrawable(cartItem.imageRes, null))
+                itemImage.setImageDrawable(
+                    ResourcesCompat.getDrawable(itemView.resources, cartItem.imageRes, null))
             }
         }
 

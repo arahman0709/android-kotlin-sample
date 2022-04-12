@@ -3,7 +3,7 @@ package com.lmorda.shopper.store
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +11,6 @@ import com.lmorda.shopper.R
 import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.databinding.FoodItemBinding
 
-//TODO: Use this in three places with three carousel layouts in store fragment
 class StoreItemAdapter(
     val itemClickListener: (Int) -> Unit,
     val checkListener: (Pair<FoodItem, Boolean>) -> Unit
@@ -50,7 +49,8 @@ class StoreItemAdapter(
             itemView.setOnClickListener { itemClickListener.invoke(foodItem.id) }
             with(binding) {
                 itemName.text = foodItem.name
-                itemImage.setImageDrawable(itemView.resources.getDrawable(foodItem.imageRes, null))
+                itemImage.setImageDrawable(
+                    ResourcesCompat.getDrawable(itemView.resources, foodItem.imageRes, null))
                 cbItem.isChecked = foodItem.inCart
                 cbItem.setOnCheckedChangeListener { _, isChecked ->
                     checkListener.invoke(Pair(foodItem, isChecked))

@@ -30,12 +30,12 @@ class StatusFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding = FragmentStatusBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewModel.getOrderStatus().observe(viewLifecycleOwner, {
+        viewModel.getOrderStatus().observe(viewLifecycleOwner) {
             binding.orderStatus.text = it
             if (it == ORDER_COMPLETE) {
                 showConfetti(binding.viewKonfetti)
@@ -44,11 +44,11 @@ class StatusFragment : Fragment() {
                     findNavController().navigate(R.id.action_statusFragment_to_orderFragment)
                 }
             }
-        })
+        }
 
-        viewModel.loading.observe(viewLifecycleOwner, {
+        viewModel.loading.observe(viewLifecycleOwner) {
             binding.pbLoading.isVisible = it
-        })
+        }
 
         return view
     }

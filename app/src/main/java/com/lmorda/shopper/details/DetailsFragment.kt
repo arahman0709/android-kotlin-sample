@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,17 +20,18 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         //TODO: Switch to composable
         val binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-        viewModel.foodItem.observe(viewLifecycleOwner, {
+        viewModel.foodItem.observe(viewLifecycleOwner) {
             it?.let { foodItem ->
                 binding.foodName.text = foodItem.name
-                binding.itemImage.setImageDrawable(resources.getDrawable(foodItem.imageRes, null))
+                binding.itemImage.setImageDrawable(
+                    ResourcesCompat.getDrawable(resources, foodItem.imageRes, null))
                 binding.price.text = foodItem.price.getPriceText()
             }
-        })
+        }
 
         binding.detailsBackBtn.setOnClickListener {
             findNavController().popBackStack()

@@ -27,15 +27,15 @@ class CartFragment : Fragment() {
 
         binding.cartItems.adapter = CartAdapter()
 
-        viewModel.getCartItems().observe(viewLifecycleOwner, {
+        viewModel.getCartItems().observe(viewLifecycleOwner) {
             (binding.cartItems.adapter as CartAdapter).apply {
                 submitList(it)
             }
-        })
+        }
 
-        viewModel.getOrderTotal().observe(viewLifecycleOwner, {
+        viewModel.getOrderTotal().observe(viewLifecycleOwner) {
             binding.orderTotal.text = getString(R.string.order_total, it.getPriceText())
-        })
+        }
 
         binding.btnPlaceOrder.setOnClickListener {
             findNavController().navigate(R.id.action_cartFragment_to_statusFragment)

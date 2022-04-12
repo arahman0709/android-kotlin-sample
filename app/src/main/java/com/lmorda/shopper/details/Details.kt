@@ -18,6 +18,7 @@ import com.lmorda.shopper.R
 import com.lmorda.shopper.data.models.FoodCategory
 import com.lmorda.shopper.data.models.FoodItem
 
+//TODO: Clean this up and actually use it!
 @Preview
 @Composable
 fun FoodItemDetails(

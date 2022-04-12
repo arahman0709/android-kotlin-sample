@@ -1,6 +1,5 @@
 package com.lmorda.shopper.orders
 
-import android.graphics.fonts.FontStyle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -20,17 +19,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.lmorda.shopper.FOOD_ITEM_ID_ARG
 import com.lmorda.shopper.R
-import com.lmorda.shopper.data.CartApiService
 import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.data.models.Order
-import com.lmorda.shopper.composables.clickableSquareImage48dp
-import com.lmorda.shopper.composables.verticalSpace16dp
-import com.lmorda.shopper.composables.verticalSpace64dp
-import com.lmorda.shopper.composables.verticalSpace8dp
+import com.lmorda.shopper.utils.clickableSquareImage48dp
+import com.lmorda.shopper.utils.verticalSpace16dp
+import com.lmorda.shopper.utils.verticalSpace64dp
+import com.lmorda.shopper.utils.verticalSpace8dp
 import com.lmorda.shopper.data.MockData.MOCK_ORDERS
 import com.lmorda.shopper.utils.parseISO8601
 
@@ -71,14 +67,12 @@ private fun OrderItemImage(foodItem: FoodItem, navController: NavController? = n
     Image(
         painter = painterResource(id = foodItem.imageRes),
         contentDescription = stringResource(R.string.order_item_image),
-        modifier = clickableSquareImage48dp(
-            {
-                navController?.let {
-                    val bundle = bundleOf(FOOD_ITEM_ID_ARG to foodItem.id)
-                    navController.navigate(R.id.action_ordersFragment_to_detailsFragment, bundle)
-                }
+        modifier = clickableSquareImage48dp {
+            navController?.let {
+                val bundle = bundleOf(FOOD_ITEM_ID_ARG to foodItem.id)
+                navController.navigate(R.id.action_ordersFragment_to_detailsFragment, bundle)
             }
-        )
+        }
     )
 }
 

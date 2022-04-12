@@ -4,23 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import com.lmorda.shopper.FOOD_ITEM_ID_ARG
 import com.lmorda.shopper.R
 import com.lmorda.shopper.databinding.FragmentBuyAgainBinding
-import com.lmorda.shopper.databinding.FragmentStoreBinding
-import com.lmorda.shopper.store.StoreItemAdapter
 import com.lmorda.shopper.utils.getViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-
 
 class BuyAgainFragment : Fragment() {
 
@@ -52,30 +49,31 @@ class BuyAgainFragment : Fragment() {
             }
         }
 
-        viewModel.cartNum.observe(viewLifecycleOwner, {
+        viewModel.cartNum.observe(viewLifecycleOwner) {
             numItems = it
             binding.numItems.text = it.toString()
-        })
+        }
 
-        viewModel.cartUpdated.observe(viewLifecycleOwner, {
+        viewModel.cartUpdated.observe(viewLifecycleOwner) {
             viewModel.getCartNum()
-        })
+        }
 
         binding.cartPill.setOnClickListener {
             if (creatingOrder || numItems == 0) return@setOnClickListener
             creatingOrder = true
-            viewModel.createOrder().observe(viewLifecycleOwner, Observer {
+            viewModel.createOrder().observe(viewLifecycleOwner) {
                 if (it == true) {
                     creatingOrder = false
                     findNavController().navigate(R.id.action_buyAgainFragment_to_cartFragment)
-                }
-                else {
+                } else {
                     creatingOrder = false
-                    Snackbar.make(view, resources.getString(R.string.create_order_error),
-                        Toast.LENGTH_SHORT
+                    Snackbar.make(
+                        view,
+                        resources.getString(R.string.create_order_error),
+                        LENGTH_SHORT
                     ).show()
                 }
-            })
+            }
         }
         viewModel.getCartNum()
 

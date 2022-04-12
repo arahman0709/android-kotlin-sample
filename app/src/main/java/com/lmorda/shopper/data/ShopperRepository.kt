@@ -49,7 +49,7 @@ class ShopperRepository(private val apiService: CartApiService) {
     /**
      * Update the cart by either adding or removing an item
      */
-    suspend fun updateCart(foodItem: FoodItem, isAdd: Boolean): Boolean {
+    fun updateCart(foodItem: FoodItem, isAdd: Boolean): Boolean {
         if (isAdd) apiService.addItemToCart(foodItem)
         else apiService.removeItemFromCart(foodItem)
         return true

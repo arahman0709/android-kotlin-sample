@@ -3,6 +3,7 @@ package com.lmorda.shopper.buyagain
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -48,7 +49,8 @@ class BuyAgainAdapter(
             itemView.setOnClickListener { itemClickListener.invoke(foodItem.id) }
             with(binding) {
                 itemName.text = foodItem.name
-                itemImage.setImageDrawable(itemView.resources.getDrawable(foodItem.imageRes, null))
+                itemImage.setImageDrawable(
+                    ResourcesCompat.getDrawable(itemView.resources, foodItem.imageRes, null))
                 cbItem.isChecked = foodItem.inCart
                 cbItem.setOnCheckedChangeListener { _, isChecked ->
                     checkListener.invoke(Pair(foodItem, isChecked))
