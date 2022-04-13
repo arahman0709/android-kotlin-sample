@@ -8,24 +8,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-@Composable
-fun clickableSquareImage48dp(clickListener: () -> Unit) = Modifier
+fun Modifier.clickableSquareImage48dp(clickListener: () -> Unit) = this
     .height(48.dp)
     .width(48.dp)
     .clickable(enabled = true, onClick = clickListener)
 
-
 @Composable
-fun verticalSpace8dp() {
+fun VerticalSpace8dp() {
     Spacer(modifier = Modifier.height(8.dp))
 }
 
 @Composable
-fun verticalSpace16dp() {
+fun VerticalSpace16dp() {
     Spacer(modifier = Modifier.height(16.dp))
 }
 
 @Composable
-fun verticalSpace64dp() {
+fun VerticalSpace64dp() {
     Spacer(modifier = Modifier.height(64.dp))
 }

@@ -24,9 +24,9 @@ import com.lmorda.shopper.R
 import com.lmorda.shopper.data.models.FoodItem
 import com.lmorda.shopper.data.models.Order
 import com.lmorda.shopper.utils.clickableSquareImage48dp
-import com.lmorda.shopper.utils.verticalSpace16dp
-import com.lmorda.shopper.utils.verticalSpace64dp
-import com.lmorda.shopper.utils.verticalSpace8dp
+import com.lmorda.shopper.utils.VerticalSpace16dp
+import com.lmorda.shopper.utils.VerticalSpace64dp
+import com.lmorda.shopper.utils.VerticalSpace8dp
 import com.lmorda.shopper.data.MockData.MOCK_ORDERS
 import com.lmorda.shopper.utils.parseISO8601
 
@@ -43,12 +43,12 @@ fun OrderItems(orderItems: List<Order>, navController: NavController? = null) {
             // Order description
             Text(text = """${order.items.size}  items delivered ${order.date.parseISO8601()}""",
                 color = Color.Black, fontSize = 14.sp)
-            verticalSpace8dp()
+            VerticalSpace8dp()
             // Images of food items ordered
             OrderImages(order, navController)
             // Add space below row if not last order
-            if (index < orderItems.size - 1) verticalSpace16dp()
-            else verticalSpace64dp()
+            if (index < orderItems.size - 1) VerticalSpace16dp()
+            else VerticalSpace64dp()
         }
     }
 }
@@ -67,7 +67,7 @@ private fun OrderItemImage(foodItem: FoodItem, navController: NavController? = n
     Image(
         painter = painterResource(id = foodItem.imageRes),
         contentDescription = stringResource(R.string.order_item_image),
-        modifier = clickableSquareImage48dp {
+        modifier = Modifier.clickableSquareImage48dp {
             navController?.let {
                 val bundle = bundleOf(FOOD_ITEM_ID_ARG to foodItem.id)
                 navController.navigate(R.id.action_ordersFragment_to_detailsFragment, bundle)

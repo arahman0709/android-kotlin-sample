@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.lmorda.shopper.databinding.FragmentDetailsBinding
 import com.lmorda.shopper.utils.getViewModelFactory
-import getPriceText
 
 class DetailsFragment : Fragment() {
 
@@ -21,23 +19,14 @@ class DetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        //TODO: Switch to composable
-        val binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-        viewModel.foodItem.observe(viewLifecycleOwner) {
-            it?.let { foodItem ->
-                binding.foodName.text = foodItem.name
-                binding.itemImage.setImageDrawable(
-                    ResourcesCompat.getDrawable(resources, foodItem.imageRes, null))
-                binding.price.text = foodItem.price.getPriceText()
+        return ComposeView(requireContext()).apply {
+            setContent {
+                FoodItemDetails(viewModel) {
+                    findNavController().popBackStack()
+                }
             }
         }
-
-        binding.detailsBackBtn.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
-        return binding.root
     }
 
 }
