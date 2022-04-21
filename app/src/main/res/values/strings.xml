@@ -19,4 +19,23 @@
     <string name="most_popular">Most popular</string>
     <string name="order_item_image">Order Item Image</string>
     <string name="arrival_times">Arrives between %1$s %2$s</string>
+
+    <!-- Invite a Friend -->
+    <string name="invite_shopper_ada">Shopper</string>
+    <string name="invite_give_gift_title">Give the gift of 2 weeks free deliver</string>
+    <string name="invite_gift_copy"><![CDATA[Share your love of Shopper with a friend! They\'ll get 2 weeks free delivery.]]></string>
+    <string name="invite_gift_link">Learn more</string>
+    <string name="invite_share_ada">Share</string>
+    <string name="invite_share_icon_text">SHARE</string>
+    <string name="invite_copy_link_ada">Copy Link</string>
+    <string name="invite_copy_link_icon_text">COPY LINK</string>
+    <string name="invite_message_ada">Message</string>
+    <string name="invite_message_icon_text">MESSAGE</string>
+    <string name="invite_share_order_ada">Share this order</string>
+    <string name="invite_share_order_icon_text">SHARE THIS ORDER</string>
+    <string name="invite_add_cal_ada">Add to calendar</string>
+    <string name="invite_add_cal_icon_text">ADD TO CALENDAR</string>
+    <string name="invite_enjoy_order_title">Enjoy your order!</string>
+    <string name="invite_check_ada">Check</string>
+    <string name="invite_close_ada">Close</string>
 </resources>

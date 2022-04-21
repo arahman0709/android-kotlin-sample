@@ -52,7 +52,7 @@ class ArrivalFragment: Fragment() {
         }
 
         binding.closeOrderBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_orderFragment_to_storeFragment)
+            findNavController().navigate(R.id.action_arrivalFragment_to_storeFragment)
         }
 
         return binding.root
