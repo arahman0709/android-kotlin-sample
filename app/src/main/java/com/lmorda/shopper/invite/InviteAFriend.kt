@@ -1,11 +1,13 @@
 package com.lmorda.shopper.invite
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,6 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lmorda.shopper.R
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Preview
 @Composable
@@ -251,27 +255,41 @@ private fun ShopperHero() {
     )
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun CopyLink(copyLinkClickListener: () -> Unit) {
+    var count by remember { mutableStateOf(0) }
+    val coroutineScope = rememberCoroutineScope()
     Image(
         painter = painterResource(id = R.drawable.ic_link),
         contentDescription = stringResource(R.string.invite_copy_link_ada),
         modifier = Modifier
             .clickable(
                 enabled = true,
-                onClick = copyLinkClickListener
+                onClick = {
+                    copyLinkClickListener()
+                    count++
+                    coroutineScope.launch {
+                        delay(2000)
+                        count = 0
+                    }
+                }
             )
             .fillMaxWidth(),
         alignment = Alignment.Center
     )
     Spacer(modifier = Modifier.padding(4.dp))
-    Text(
-        text = stringResource(R.string.invite_copy_link_icon_text),
-        modifier = Modifier
-            .fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        fontSize = 10.sp
-    )
+    AnimatedContent(targetState = count) { targetCount ->
+        Text(
+            text = if (targetCount == 0)
+                stringResource(R.string.invite_copy_link_icon_text)
+            else stringResource(R.string.invite_link_copied_icon_text),
+            modifier = Modifier
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontSize = 10.sp
+        )
+    }
 }
 
 @Composable

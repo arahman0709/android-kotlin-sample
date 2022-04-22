@@ -29,6 +29,7 @@
     <string name="invite_share_icon_text">SHARE</string>
     <string name="invite_copy_link_ada">Copy Link</string>
     <string name="invite_copy_link_icon_text">COPY LINK</string>
+    <string name="invite_link_copied_icon_text">LINK COPIED</string>
     <string name="invite_message_ada">Message</string>
     <string name="invite_message_icon_text">MESSAGE</string>
     <string name="invite_share_order_ada">Share this order</string>
