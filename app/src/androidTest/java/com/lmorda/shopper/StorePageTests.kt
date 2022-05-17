@@ -1,5 +1,8 @@
 package com.lmorda.shopper
 
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithText
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
@@ -9,10 +12,12 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import com.lmorda.shopper.invite.InviteAFriend
 import com.lmorda.shopper.utils.EspressoIdlingResource
 import org.hamcrest.Matchers.allOf
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -94,6 +99,8 @@ class StorePageTests {
 
     }
 
+    @get:Rule
+    val composeTestRule = createComposeRule()
     @Test
     fun testCompletedOrder() {
         val activityScenario = ActivityScenario.launch(ShopperActivity::class.java)
@@ -104,13 +111,19 @@ class StorePageTests {
         // Click complete purchase
         onView(withId(R.id.btnPlaceOrder)).perform(click())
         // Verify confirming order has begun
-        onView(withId(R.id.orderStatus)).check(matches(withText("Confirming your order")))
-        //TODO: Add UI test for Invite a friend screen
-//        // Click Order details close button
-//        onView(withId(R.id.closeOrderBtn)).perform(click())
-//        // Verify sent back to home page
-//        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
-//        activityScenario.close()
+        onView(withId(R.id.orderStatus)).check(matches(withText("Verifying payment card")))
+        // Verify invite dialog is shown
+        composeTestRule.onNodeWithText("Enjoy your order!").assertIsDisplayed()
+
+        //TODO: Click invite dialog close button
+
+
+
+        // Click Order details close button
+        onView(withId(R.id.closeOrderBtn)).perform(click())
+        // Verify sent back to home page
+        onView(withId(R.id.storeTitle)).check(matches(withText("Jons")))
+        activityScenario.close()
     }
 
     //TODO: Compose UI test

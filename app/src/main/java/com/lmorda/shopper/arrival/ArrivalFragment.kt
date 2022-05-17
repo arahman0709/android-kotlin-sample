@@ -32,7 +32,7 @@ class ArrivalFragment: Fragment() {
 
         lifecycleScope.launch {
             viewModel.orderDetails.collectLatest {
-                binding.orderStatus.text = it?.status
+                binding.arrivalStatus.text = it?.status
                 binding.arrivalTime.text = getString(R.string.arrival_times,
                         it?.arrivalFirst?.parseISO8601(),
                         it?.arrivalSecond?.parseISO8601())

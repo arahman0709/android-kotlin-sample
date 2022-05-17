@@ -71,9 +71,9 @@ class ShopperRepository(private val apiService: CartApiService) {
                 delay(POLLING_DELAY)
                 val latestStatus = apiService.getCheckoutStatus()
                 emit(latestStatus)
+                if (latestStatus == MOCK_STATUSES.first()) EspressoIdlingResource.decrement()
                 if (latestStatus == MOCK_STATUSES.last()) break
             }
-            EspressoIdlingResource.decrement()
         }
 
     /**
