@@ -30,6 +30,7 @@ fun FoodItemDetails(
     when (detailsState) {
         is DetailsViewState.DetailsItem ->
             FoodItem((detailsState as DetailsViewState.DetailsItem).foodItem, backBtnListener)
+        else -> {}
     }
 }
 
